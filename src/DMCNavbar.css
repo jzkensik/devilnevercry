@@ -1,0 +1,10 @@
+
+body {
+    position:sticky;
+    top:0;
+    width: 100%;
+}
+
+.main-navbar {
+    color:blue
+}

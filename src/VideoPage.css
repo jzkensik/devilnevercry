@@ -1,0 +1,12 @@
+h1 {
+    color: blue;
+}
+.row {
+    display: flex;
+    flex-wrap: nowrap; 
+    align-items: baseline;
+}
+.col {
+    width: 50%;
+    padding: 200;
+}
