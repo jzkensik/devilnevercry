@@ -16,7 +16,7 @@ function VideoPage() {
         return (
             video_links.map((item) => (
                 <Fragment>
-                    <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
+                    <iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
                 </Fragment>
             )
             ));

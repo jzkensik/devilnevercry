@@ -5,7 +5,9 @@ h1 {
     display: flex;
     flex-wrap: wrap;
 }
-.col {
-    width: 50%;
-    padding: 200;
+.videoEntries {
+    margin-left: 20;
+    margin-right: 20; 
+    padding: 20;
+    width: 300; 
 }
