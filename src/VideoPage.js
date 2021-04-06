@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import Loadable from 'react-loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,14 +11,22 @@ import './VideoPage.css';
 
 function VideoPage() {
 
-    function generateRows(video_links) {
-        for (var i = 0; i < video_links.length; i = i + 3) {
-            let video1 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[i])}></iframe>
-            let video2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[i + 1])}></iframe>
-            let video3 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[i + 2])}></iframe>
-        }
-
-        return <Row></Row>
+    function generateVideos(video_links) {
+        console.log(video_links)
+        return (
+            video_links.map((item) => (
+                <Fragment>
+                    <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
+                </Fragment>
+            )
+            ));
+        // return (
+        //     <Fragment>
+        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
+        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
+        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
+        //     </Fragment>
+        // )
     }
 
     function iframeAdder() {
@@ -28,17 +36,16 @@ function VideoPage() {
         //columns, respectively
         //var link = "<Row><Col><iframe src=" + url_link + " style='backgroundColor:green;'>" + "</iframe></Col><Col><iframe " + "style='backgroundColor:pink;'>" + "</iframe></Col><Col><iframe " + "style='backgroundColor:red;'" + ">Box One</iframe></Col></Row>"
         try { //css modules
-            const addLinks = newData.map((vidEntry) => vidEntry.video_link) //this works
+            //const addLinks = newData.map((vidEntry) => vidEntry.video_link) //this works
             //maybe now it's a for loop of three?
             var rowHold = '';
             var rowHold2 = '';
 
             //for (var i = 0; i < addLinks.length; i = i + 3) {
-            rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
-            rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
+            //rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
+            //rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
             //}
-            console.log(rowHold)
-            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}>{generateRows(addLinks)}</Container>
+            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ 'padding': 30 }}>{generateVideos(newData)}</Row></Container>
         }
         catch (exception) {
         }
@@ -108,28 +115,6 @@ function VideoPage() {
         <div>
             <DMCNavbar></DMCNavbar>
             <VideoFilter></VideoFilter>
-            <Container>
-                <Row>
-
-                    <Col>
-                        <iframe style={{ 'backgroundColor': 'blue' }}>Box One</iframe>
-                    </Col>
-                    <Col>
-                        <iframe style={{ 'backgroundColor': 'cyan' }}>Box One</iframe>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <iframe style={{ 'backgroundColor': 'green' }}></iframe>
-                    </Col>
-                    <Col>
-                        <iframe style={{ 'backgroundColor': 'pink' }}>Box One</iframe>
-                    </Col>
-                    <Col>
-                        <iframe style={{ 'backgroundColor': 'red' }}>Box One</iframe>
-                    </Col>
-                </Row>
-            </Container>
             {iframeAdder()}
         </div >
     )

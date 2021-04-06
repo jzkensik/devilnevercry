@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;        // set our port
 
 
-const videosRouter = require('./routes/videos');
+const videosRouter = require('../routes/videos');
 
 app.use('/videos', videosRouter);
 

@@ -3,8 +3,7 @@ h1 {
 }
 .row {
     display: flex;
-    flex-wrap: nowrap; 
-    align-items: baseline;
+    flex-wrap: wrap;
 }
 .col {
     width: 50%;
