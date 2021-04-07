@@ -7,12 +7,13 @@ import VideoPage from './VideoPage';
 import VideoFilter from './VideoFilter';
 import CharacterFilter from './CharacterFilter';
 import VideoThumbnail from './VideoThumbnail';
+import UploadVideo from './UploadVideo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <VideoPage></VideoPage>
+    <UploadVideo></UploadVideo>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,6 +11,18 @@ import './VideoPage.css';
 
 function UploadVideo() {
 
-}
+    async function sendContent() {
+        await fetch('http://localhost:8080/videos/new-video',
+            {
+                method: "POST",
+                headers: {}
+            })
+            .then(async (response) => response.json())
 
+    }
+    //var [newData, setData] = useState(false);
+
+    return <div onClick={sendContent}><h1>here</h1></div>
+}
+//make a button to post the video
 export default UploadVideo;
