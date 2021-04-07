@@ -3,9 +3,9 @@ import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 import Loadable from 'react-loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Canvas from './Canvas.js';
-import './HomePage.css';
 import DMCNavbar from './DMCNavbar.js';
 import VideoFilter from './VideoFilter.js';
+import VideoThumbnail from './VideoThumbnail.js'
 import parse, { domToReact } from 'html-react-parser';
 import './VideoPage.css';
 
@@ -13,21 +13,16 @@ function VideoPage() {
 
     function generateVideos(video_links) {
         console.log(video_links)
+        //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
         return (
             video_links.map((item) => (
                 <Fragment>
-                    <iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
+                    <VideoThumbnail></VideoThumbnail>
                 </Fragment>
             )
             ));
-        // return (
-        //     <Fragment>
-        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
-        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
-        //         <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(video_links[0].video_link)}></iframe>
-        //     </Fragment>
-        // )
     }
+    //for tomorrow: rename iframeAdder to be more fitting, make videos left-aligned inside of container, add a POST API call OR sign-in functions
 
     function iframeAdder() {
         //this is where we'll attach the iframes

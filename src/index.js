@@ -6,6 +6,7 @@ import DMCNavbar from './DMCNavbar';
 import VideoPage from './VideoPage';
 import VideoFilter from './VideoFilter';
 import CharacterFilter from './CharacterFilter';
+import VideoThumbnail from './VideoThumbnail';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import reportWebVitals from './reportWebVitals';
 
