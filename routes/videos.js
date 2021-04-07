@@ -22,4 +22,13 @@ router.post('/new-video', async function (req, res, next) {
     }
 })
 
+router.delete('/remove-video', async function (req, res, next) {
+    try {
+        res.send(await videos.deleteVideo());
+    } catch (err) {
+        console.error("couldn't delete video", err.message);
+        next(err)
+    }
+})
+
 module.exports = router;
