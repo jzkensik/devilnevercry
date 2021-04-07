@@ -17,7 +17,7 @@ function VideoPage() {
         return (
             video_links.map((item) => (
                 <Fragment>
-                    <VideoThumbnail></VideoThumbnail>
+                    <VideoThumbnail player={item.player} url={item.video_link}></VideoThumbnail>
                 </Fragment>
             )
             ));
@@ -25,11 +25,6 @@ function VideoPage() {
     //for tomorrow: rename iframeAdder to be more fitting, make videos left-aligned inside of container, add a POST API call OR sign-in functions
 
     function iframeAdder() {
-        //this is where we'll attach the iframes
-        //we'll do two other functions. This one makes the container
-        //the other two do three videos at a time with rows and one at a time with
-        //columns, respectively
-        //var link = "<Row><Col><iframe src=" + url_link + " style='backgroundColor:green;'>" + "</iframe></Col><Col><iframe " + "style='backgroundColor:pink;'>" + "</iframe></Col><Col><iframe " + "style='backgroundColor:red;'" + ">Box One</iframe></Col></Row>"
         try { //css modules
             //const addLinks = newData.map((vidEntry) => vidEntry.video_link) //this works
             //maybe now it's a for loop of three?
@@ -40,7 +35,7 @@ function VideoPage() {
             //rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
             //rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
             //}
-            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ 'padding': 30 }}>{generateVideos(newData)}</Row></Container>
+            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ display: 'flex', justifyContent: 'center', 'padding-top': 50, 'padding-left': 80, 'padding-right': 80 }}>{generateVideos(newData)}</Row></Container>
         }
         catch (exception) {
         }

@@ -40,6 +40,7 @@ function DMCNavbar() {
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="#upload">Upload Video</Nav.Link>
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
