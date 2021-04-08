@@ -4,7 +4,6 @@ import './index.css';
 import HomePage from './HomePage';
 import DMCNavbar from './DMCNavbar';
 import VideoPage from './VideoPage';
-import VideoFilter from './VideoFilter';
 import CharacterFilter from './CharacterFilter';
 import VideoThumbnail from './VideoThumbnail';
 import UploadVideo from './UploadVideo';
@@ -13,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UploadVideo></UploadVideo>
+    <VideoPage></VideoPage>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -18,12 +18,14 @@ function VideoThumbnail(props) {
     }
     //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
     //this above part is what we'll be replacing
-    return <div style={{ width: '300px', 'padding': 20 }}>
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', backgroundColor: 'red', padding: '5px' }}>
-            <iframe style={{ width: '95%' }} src={"//www.youtube.com/embed/" + getId(props.url)}></iframe>
-            <h3>{props.player}</h3>
+    return (
+        <div style={{ width: '300px', 'padding': 20 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', backgroundColor: 'red', padding: '5px' }}>
+                <iframe style={{ width: '95%' }} src={"//www.youtube.com/embed/" + getId(props.url)}></iframe>
+                <h3>{props.player}</h3>
+            </div>
         </div>
-    </div>
+    )
 }
 
 //by "test_player"

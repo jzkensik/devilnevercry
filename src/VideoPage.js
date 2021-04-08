@@ -4,7 +4,8 @@ import Loadable from 'react-loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Canvas from './Canvas.js';
 import DMCNavbar from './DMCNavbar.js';
-import VideoFilter from './VideoFilter.js';
+import DMC3VideoFilter from './DMC3VideoFilter.js';
+import DMC5VideoFilter from './DMC5VideoFilter.js';
 import VideoThumbnail from './VideoThumbnail.js'
 import parse, { domToReact } from 'html-react-parser';
 import './VideoPage.css';
@@ -41,16 +42,6 @@ function VideoPage() {
         }
     }
 
-    function getId(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        console.log(typeof regExp)
-        const match = String(url).match(regExp);
-
-        return (match && match[2].length === 11)
-            ? match[2]
-            : null;
-    }
-
     var [newData, setData] = useState(false);
     useEffect(() => {
         async function getContent() {
@@ -78,18 +69,7 @@ function VideoPage() {
         }
         getContent();
     }, [newData])
-    //const iframeMarkup = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + 'null' + '" frameborder="0" allowfullscreen></iframe>';
-    //<Container style={{ 'padding': '25px' }}>
-    //<Row style={{ 'display': 'flex'}}
-    //<Col>
-    //<iframe width="300" height="200" src={url} frameborder='0'></iframe>
-    //</Col>
-    try {
-        var url = "https://www.youtube.com/embed/" + newData[8].video_link;
-    }
-    catch (exception) {
 
-    }
     //as we thought, this gets around the issue. Now we can access this thing
     //by using newData as an array
     //let parser = new DOMParser().parseFromString(iframeMarkup, "text/html");
@@ -104,9 +84,9 @@ function VideoPage() {
     return (
         <div>
             <DMCNavbar></DMCNavbar>
-            <VideoFilter></VideoFilter>
+            <DMC3VideoFilter></DMC3VideoFilter>
             {iframeAdder()}
-        </div >
+        </div>
     )
 }
 
