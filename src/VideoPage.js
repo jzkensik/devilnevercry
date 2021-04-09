@@ -13,7 +13,6 @@ import './VideoPage.css';
 function VideoPage() {
 
     function generateVideos(video_links) {
-        console.log(video_links)
         //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
         return (
             video_links.map((item) => (
