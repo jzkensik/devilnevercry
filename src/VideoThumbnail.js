@@ -30,5 +30,6 @@ function VideoThumbnail(props) {
 
 //by "test_player"
 //first few digits of the date
+//Card could replace what we've been doing
 
 export default VideoThumbnail;

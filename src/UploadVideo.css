@@ -1,0 +1,5 @@
+.blur-box {
+    display: block;
+    background-color:#161321;
+    filter: contrast(70%);
+}

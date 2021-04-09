@@ -81,6 +81,7 @@ function VideoPage() {
     //letting people make title screen images could be fun
 
     //next goal: make user creation/sign-in functionality, dynamic video additions
+    //Pagination could be good here
     return (
         <div>
             <DMCNavbar></DMCNavbar>

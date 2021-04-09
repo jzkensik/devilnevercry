@@ -20,6 +20,7 @@ function DMCNavbar() {
 
     //Since it's more based around creators than characters, you can filter, e.g, Lady gameplay
     //in DMC4:SE to see a list of creators who have made videos involving her, and the number.
+    //Try a Jumbotron
 
     return (
         <Navbar bg="dark" expand="lg">
