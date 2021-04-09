@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Navbar, Container, Row, Col, Button, Carousel, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Button, Carousel, Dropdown, DropdownButton, InputGroup, Form } from 'react-bootstrap';
 import Loadable from 'react-loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -7,18 +7,20 @@ function UploadFields(props) {
 
     const [character, setCharacter] = useState(0)
     const [version, setVersion] = useState(0)
+    const [currentSlide, setSlide] = useState(0)
+    try {
+        var video_title = document.getElementById('title-form').value;
+        var video_link = document.getElementById('link-form').value;
+    } catch (exception) {
 
-    var currentSlide = 0;
+    }
 
-    // useEffect(() => {
-    //     console.log(currentSlide)
-    //     console.log(props.field)
-    //     if (props.field != currentSlide) {
-    //         setCharacter('char-dropdown')
-    //         setVersion('version-dropdown')
-    //         currentSlide = props.field
-    //     }
-    // });
+    if (currentSlide != props.field) {
+        console.log(character)
+        setCharacter('char-dropdown')
+        setVersion('version-dropdown')
+        setSlide(props.field)
+    }
 
     function selectedButton(selection, dummy) {
         if (dummy == 'char') {
@@ -74,14 +76,30 @@ function UploadFields(props) {
             ));
     }
     return (
-        <div style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'flexWrap': 'column' }}>
-            <DropdownButton id='character-dropdown' title={character || 'char-dropdown'}>
-                {selectCharForm()}
-            </DropdownButton>
-            <DropdownButton id='version-dropdown' title={version || 'version-dropdown'}>
-                {selectVersion()}
-            </DropdownButton>
-        </div>
+        <>
+            <Form>
+                <Form.Group>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control id='title-form' type="text" placeholder="Title" />
+                    <Form.Text>
+                        Pick something descriptive yet succint. Ask yourself, would Dante get bored reading it?
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Video Link</Form.Label>
+                    <Form.Control id='link-form' type="text" placeholder="Video Link" />
+                </Form.Group>
+            </Form>
+            <div style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'flexWrap': 'column' }}>
+                <DropdownButton id='character-dropdown' title={character || 'char-dropdown'}>
+                    {selectCharForm()}
+                </DropdownButton>
+                <DropdownButton id='version-dropdown' title={version || 'version-dropdown'}>
+                    {selectVersion()}
+                </DropdownButton>
+
+            </div>
+        </>
     )
 
 }
