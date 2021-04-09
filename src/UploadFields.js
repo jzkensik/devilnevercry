@@ -27,38 +27,39 @@ function UploadFields(props) {
     function selectVersion() {
         switch (props.field) {
             case 0:
-
+                return generateDropdown(['Original', 'HD Collection', 'Switch', 'PC', 'n/a'], '1')
             case 1:
-
+                return generateDropdown(['Original', 'HD Collection', 'Switch', 'PC', 'n/a'], '2')
             case 2:
-
+                return generateDropdown(['Original', 'Special Edition', 'HD Collection', 'Switch', 'PC', 'n/a'], '3')
             case 3:
-
+                return generateDropdown(['Original', 'Special Edition', 'PC', 'n/a'], '4')
             case 4:
-
+                return generateDropdown(['Original', 'Definitive Edition', 'PC', 'n/a'], 'dmc')
             case 5:
+                return generateDropdown(['Original', 'Special Edition', 'PC', 'n/a'], '5')
         }
     }
 
     function generateDropdown(dropdown_contents, game) {
-
+        console.log(dropdown_contents[0] + game)
         return (
             dropdown_contents.map((item) => (
                 <Fragment>
-                    <Dropdown.Item as="button">{item}</Dropdown.Item>
+                    <Dropdown.Item as="button" eventKey={item + game}>{item}</Dropdown.Item>
                 </Fragment>
             )
             ));
     }
     return (
-        <>
+        <div style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'flexWrap': 'column' }}>
             <DropdownButton id='character-dropdown' title='char-dropdown'>
                 {selectCharForm()}
             </DropdownButton>
             <DropdownButton id='version-dropdown' title='version-dropdown'>
                 {selectVersion()}
             </DropdownButton>
-        </>
+        </div>
     )
 
 }
