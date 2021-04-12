@@ -11,7 +11,22 @@ function UploadFields(props) {
     try {
         var video_title = document.getElementById('title-form').value;
         var video_link = document.getElementById('link-form').value;
+        //see how you can pass this into POST
     } catch (exception) {
+
+    }
+
+    async function sendContent() {
+        var data = { game: props.field, title: video_title, link: video_link, character: character, version: version }
+        await fetch('http://localhost:8080/videos/new-video',
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(async (response) => console.log(response.json()))
 
     }
 
@@ -99,6 +114,7 @@ function UploadFields(props) {
                 </DropdownButton>
 
             </div>
+            <Button onClick={sendContent}><h1>here</h1></Button>
         </>
     )
 

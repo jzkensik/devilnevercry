@@ -7,12 +7,13 @@ import VideoPage from './VideoPage';
 import CharacterFilter from './CharacterFilter';
 import VideoThumbnail from './VideoThumbnail';
 import UploadVideo from './UploadVideo';
+import CreateUser from './CreateUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UploadVideo></UploadVideo>
+    <CreateUser></CreateUser>
   </React.StrictMode>,
   document.getElementById('root')
 );

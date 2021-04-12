@@ -16,15 +16,7 @@ import dmc5_title from './images/devilmaycry5/devil_may_cry_5_title.jpg'
 import './UploadVideo.css'
 
 function UploadVideo() {
-    async function sendContent() {
-        await fetch('http://localhost:8080/videos/new-video',
-            {
-                method: "POST",
-                headers: {}
-            })
-            .then(async (response) => response.json())
 
-    }
     //var [newData, setData] = useState(false);
 
     function moriCalliope() {
@@ -117,7 +109,6 @@ function UploadVideo() {
                 </Carousel.Item>
             </Carousel>
             <UploadFields field={index}></UploadFields>
-            <Button onClick={sendContent}><h1>here</h1></Button>
         </div>
 
     )
