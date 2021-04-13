@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CreateUser></CreateUser>
+    <VideoPage></VideoPage>
   </React.StrictMode>,
   document.getElementById('root')
 );

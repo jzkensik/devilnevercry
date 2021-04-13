@@ -15,6 +15,7 @@ function CreateUser() {
         var confirmPassword = document.getElementById('confirm-password-form').value;
         var dateOfBirth = document.getElementById('dob-form').value;
         //see how you can pass this into POST
+        //probably better-served to use this component as a Modal
     } catch (exception) {
 
     }
