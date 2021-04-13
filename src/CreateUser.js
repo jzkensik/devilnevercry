@@ -44,8 +44,8 @@ function CreateUser() {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ marginTop: 50, padding: 50, width: '70%', backgroundColor: '#0047ab' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#42d7f5' }}>
+            <div style={{ marginTop: 50, marginBottom: 50, padding: 50, width: '70%', backgroundColor: '#0047ab' }}>
                 <div><h1>sign-up here</h1></div>
                 <Form>
                     <Form.Group>
@@ -54,16 +54,20 @@ function CreateUser() {
                             Pick something descriptive yet succint. Ask yourself, would Dante get bored reading it?
                     </Form.Text>
                     </Form.Group>
-                    <div style={{ padding: '20px', width: '90%' }}>
-                        <Form.Group>
-                            <Form.Control id='password-form' type="text" placeholder="Password" />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Control id='confirm-password-form' type="text" placeholder="Confirm Password" />
-                        </Form.Group>
-                    </div>
+                    <Form.Group>
+                        <Form.Control id='password-form' type="text" placeholder="Password" />
+                        <Form.Text>
+                            Between 8 and 32 characters
+                    </Form.Text>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control id='confirm-password-form' type="text" placeholder="Confirm Password" />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Control id='dob-form' type="text" placeholder="mm/dd/yyyy" />
+                        <Form.Text>
+                            Date of Birth
+                    </Form.Text>
                     </Form.Group>
                 </Form>
                 <Button onClick={createUser}><h1>Create User</h1></Button>

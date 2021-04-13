@@ -4,6 +4,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Image from 'react-bootstrap/Image';
 import dante from './boomerDante.jpg';
+import CreateUser from './CreateUser.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Canvas from './Canvas.js';
 import './DMCNavbar.css';
@@ -54,7 +55,7 @@ function DMCNavbar() {
                 </Navbar.Collapse>
             </Navbar>
             <Modal show={show}>
-                <Modal.Body>does this work</Modal.Body>
+                <Modal.Body><CreateUser></CreateUser></Modal.Body>
             </Modal>
         </div>
     )
