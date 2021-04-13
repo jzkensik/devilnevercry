@@ -24,6 +24,7 @@ function DMCNavbar() {
     //Try a Jumbotron
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true)
+    const handleClose = () => setShow(false)
 
     return (
         <div>
@@ -54,8 +55,11 @@ function DMCNavbar() {
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
-            <Modal show={show}>
-                <Modal.Body><CreateUser></CreateUser></Modal.Body>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Body>
+                    <Button style={{ width: '5%' }} onClick={handleClose}></Button>
+                    <CreateUser></CreateUser>
+                </Modal.Body>
             </Modal>
         </div>
     )
