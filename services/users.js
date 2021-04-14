@@ -36,12 +36,8 @@ async function createNewUser(fields) {
         console.log('infinite')
         return createNewUser(fields);
     }
-    const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + fields.hashword + "'" + ', ' + "'" + fields.dob + "'" + ', ' + "'" + fields.email + "'" + ')')
-    //const data = await db.query(`SELECT * FROM Videos`)
-    //console.log(data)
-    //username, password, dob
-    //generate user_id: getRandomInt(2, 100000)
-    //console.log(data)
+    const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + fields.hashword + "'" + ', ' + `STR_TO_DATE(` + "'" + fields.dob + "'" + ', ' + `"%d/%c/%Y")` + ', ' + "'" + fields.email + "'" + ')')
+    //now fix the password
     return {
         data
     }
