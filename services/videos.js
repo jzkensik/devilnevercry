@@ -33,15 +33,6 @@ async function postNewVideo(fields) {
 }
 //good job. Next is creating users
 
-async function createNewUser(fields) {
-    console.log(fields)
-    //const data = await db.query()
-
-    return {
-        data
-    }
-}
-
 async function deleteVideo() {
     const data = await db.query(
         `DELETE FROM DevilMayCry3Characters WHERE player_character = 'Credo'`
@@ -53,6 +44,5 @@ async function deleteVideo() {
 module.exports = {
     returnAllVids,
     postNewVideo,
-    createNewUser,
     deleteVideo
 }
