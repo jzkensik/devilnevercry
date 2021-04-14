@@ -14,6 +14,7 @@ function CreateUser() {
         var password = document.getElementById('password-form').value;
         var confirmPassword = document.getElementById('confirm-password-form').value;
         var dateOfBirth = document.getElementById('dob-form').value;
+        var email = document.getElementById('email-form').value;
         //see how you can pass this into POST
         //probably better-served to use this component as a Modal
     } catch (exception) {
@@ -30,10 +31,10 @@ function CreateUser() {
             //also the characters are just the dots
             return
         }
-        var data = { username: username, password: password, dob: dateOfBirth }
-        await fetch('http://localhost:8080/videos/new-user',
+        var data = { username: username, password: password, dob: dateOfBirth, email: email }
+        await fetch('http://localhost:8080/users/new-user',
             {
-                method: "POST",
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -67,6 +68,12 @@ function CreateUser() {
                         <Form.Control id='dob-form' type="text" placeholder="mm/dd/yyyy" />
                         <Form.Text>
                             Date of Birth
+                    </Form.Text>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control id='email-form' type="text" placeholder="Email Address" />
+                        <Form.Text>
+                            Email
                     </Form.Text>
                     </Form.Group>
                 </Form>
