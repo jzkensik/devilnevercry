@@ -9,21 +9,7 @@ import './VideoPage.css';
 
 function CreateUser() {
 
-    try {
-        var username = document.getElementById('username-form').value;
-        var password = document.getElementById('password-form').value;
-        var confirmPassword = document.getElementById('confirm-password-form').value;
-        var dateOfBirth = document.getElementById('dob-form').value;
-        var email = document.getElementById('email-form').value;
-        //see how you can pass this into POST
-        //probably better-served to use this component as a Modal
-    } catch (exception) {
-
-    }
-
     async function createUser() {
-        console.log(password)
-        console.log(confirmPassword)
         if (password != confirmPassword) {
             console.log('passwords do not match')
             //try to make a message that says "passwords do not match" that occurs on this
@@ -31,10 +17,17 @@ function CreateUser() {
             //also the characters are just the dots
             return
         }
+        var username = document.getElementById('username-form').value;
+        console.log(username)
+        var password = document.getElementById('password-form').value;
+        console.log(password)
+        var confirmPassword = document.getElementById('confirm-password-form').value;
+        var dateOfBirth = document.getElementById('dob-form').value;
+        var email = document.getElementById('email-form').value;
         var data = { username: username, password: password, dob: dateOfBirth, email: email }
         await fetch('http://localhost:8080/users/new-user',
             {
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },

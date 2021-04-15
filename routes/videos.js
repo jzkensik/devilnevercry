@@ -23,17 +23,6 @@ router.post('/new-video', async function (req, res, next) {
     }
 })
 
-router.post('/new-user', async function (req, res, next) {
-    var content = req.body
-    console.log(videos.createNewUser(content))
-    // try {
-    //     res.send(await videos.createNewUser(content));
-    // } catch (err) {
-    //     console.error("couldn't post video;", err.message);
-    //     next(err);
-    // }
-})
-
 router.delete('/remove-video', async function (req, res, next) {
     try {
         res.send(await videos.deleteVideo());

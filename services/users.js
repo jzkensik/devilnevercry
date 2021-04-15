@@ -29,6 +29,7 @@ function getRandomInt(min, max) {
 async function createNewUser(fields) {
     const id = getRandomInt(2, 100000)
     const hashword = sha256(fields.password);
+    console.log(typeof hashword)
     console.log(hashword)
     //console.log(password)
     const prelim = await db.query(`SELECT * FROM Users WHERE user_id = ` + id)
@@ -36,7 +37,7 @@ async function createNewUser(fields) {
         console.log('infinite')
         return createNewUser(fields);
     }
-    const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + fields.hashword + "'" + ', ' + `STR_TO_DATE(` + "'" + fields.dob + "'" + ', ' + `"%d/%c/%Y")` + ', ' + "'" + fields.email + "'" + ')')
+    const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + fields.hashword + "'" + ', ' + `STR_TO_DATE(` + "'" + fields.dob + "'" + ', ' + `"%m/%d/%Y")` + ', ' + "'" + fields.email + "'" + ')')
     //now fix the password
     return {
         data

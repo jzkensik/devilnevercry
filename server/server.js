@@ -17,8 +17,10 @@ var port = process.env.PORT || 8080;        // set our port
 
 
 const videosRouter = require('../routes/videos');
+const usersRouter = require('../routes/users');
 
 app.use('/videos', videosRouter);
+app.use('/users', usersRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
