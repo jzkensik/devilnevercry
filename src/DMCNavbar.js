@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Modal } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import HomePage from './HomePage.js';
@@ -33,47 +33,41 @@ function DMCNavbar() {
     console.log('hello here')
 
     return (
-        <Router>
-            <div>
-                <Navbar bg="dark" expand="lg">
-                    <Navbar.Brand href="#home">Devil Never Cry</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav id='main-navbar' className="mr-auto">
-                            <Link to="/devilmaycry3">Users</Link>
-                            <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
-                            </NavDropdown>
-                            <Nav.Link to="/upload" component={UploadVideo}>Upload Video</Nav.Link>
-                            <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
-                        </Nav>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
-                    </Navbar.Collapse>
-                </Navbar>
-                <Switch>
-                    <Route path="/devilmaycry3">
-                        <VideoPage />
-                    </Route>
-                </Switch>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Body>
-                        <Button style={{ width: '5%' }} onClick={handleClose}></Button>
-                        <CreateUser></CreateUser>
-                    </Modal.Body>
-                </Modal>
-            </div>
-        </Router>
+        <div>
+            <Navbar bg="dark" expand="lg">
+                <Link to="/">Home</Link>
+                <Navbar.Brand href="#home">Devil Never Cry</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav id='main-navbar' className="mr-auto">
+                        <Link to="/devilmaycry3">Users</Link>
+                        <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link to="/upload" component={UploadVideo}>Upload Video</Nav.Link>
+                        <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+                    </Nav>
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
+                </Navbar.Collapse>
+            </Navbar>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Body>
+                    <Button style={{ width: '5%' }} onClick={handleClose}></Button>
+                    <CreateUser></CreateUser>
+                </Modal.Body>
+            </Modal>
+        </div>
     )
 }
 

@@ -4,7 +4,7 @@ import './index.css';
 import HomePage from './HomePage';
 import DMCNavbar from './DMCNavbar';
 import VideoPage from './VideoPage';
-import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 import CharacterFilter from './CharacterFilter';
 import VideoThumbnail from './VideoThumbnail';
 import UploadVideo from './UploadVideo';
@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HomePage></HomePage>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

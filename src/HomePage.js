@@ -40,9 +40,6 @@ function HomePage() {
                     <Image id='dante' style={{ 'width': '50%' }} src={dante} fluid />
                 </div>
             </Container>
-            <div class="sticky">
-                <DMCNavbar></DMCNavbar>
-            </div>
             <Container className='video-header' style={{ 'backgroundColor': 'black', 'marginTop': 50 }}>
                 <div style={{
                     'background-color': 'black', 'display': 'flex',
