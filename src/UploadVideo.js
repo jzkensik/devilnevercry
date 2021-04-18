@@ -45,7 +45,6 @@ function UploadVideo() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <DMCNavbar></DMCNavbar>
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                 <Carousel.Item style={{ textAlign: 'center' }} onClick={moriCalliope}>
                     <img className='blur-box' style={{ display: 'inline-block' }}

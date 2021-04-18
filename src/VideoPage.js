@@ -78,7 +78,7 @@ function VideoPage() {
     //we have the ability to turn strings to HTML, so try using that to iteratively create this stuff
     //letting people make title screen images could be fun
 
-    //next goal: make user creation/sign-in functionality, dynamic video additions
+    //next goal for videos: see if you can queue the first 30 results and auto-display when clicked back to the game page
     //Pagination could be good here
     return (
         <div>

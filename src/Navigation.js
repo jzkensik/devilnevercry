@@ -6,6 +6,7 @@ function Navigation() {
         <div>
             <NavLink to='/'>Home</NavLink>
             <NavLink to='/devilmaycry3'>Videos</NavLink>
+            <NavLink to='/upload'>Upload Video</NavLink>
         </div>
     )
 }

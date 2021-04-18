@@ -52,7 +52,7 @@ function DMCNavbar() {
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link to="/upload" component={UploadVideo}>Upload Video</Nav.Link>
+                        <Link to="/upload">Upload Video</Link>
                         <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
                     </Nav>
                     <Form inline>
