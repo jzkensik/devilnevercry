@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap';
+import HomePage from './HomePage';
+import VideoPage from './VideoPage';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Image from 'react-bootstrap/Image';
@@ -28,33 +33,57 @@ function DMCNavbar() {
 
     return (
         <div>
-            <Navbar bg="dark" expand="lg">
-                <Navbar.Brand href="#home">Devil Never Cry</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav id='main-navbar' className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Users</Nav.Link>
-                        <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="#upload">Upload Video</Nav.Link>
-                        <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
+            <Router>
+                <Navbar bg="dark" expand="lg">
+                    <Navbar.Brand href="#home">Devil Never Cry</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav id='main-navbar' className="mr-auto">
+                            <LinkContainer to="/home">
+                                <Nav.Link href="#home">Home</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/users">
+                                <Nav.Link >Users</Nav.Link>
+                            </LinkContainer>
+                            <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
+                                <LinkContainer to="devilmaycry">
+                                    <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="devilmaycry2">
+                                    <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="devilmaycry3">
+                                    <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="devilmaycry4">
+                                    <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="dmcdevilmaycry">
+                                    <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="devilmaycry5">
+                                    <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
+                                </LinkContainer>
+                                <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
+                            </NavDropdown>
+                            <Nav.Link href="#upload">Upload Video</Nav.Link>
+                            <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+                        </Nav>
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button variant="outline-success">Search</Button>
+                        </Form>
+                    </Navbar.Collapse>
+                </Navbar>
+                <Switch>
+                    <Route path="/devilmaycry3" component={VideoPage} />
+                    <Route path="/home">
+                        <HomePage />
+                    </Route>
+                </Switch>
+            </Router>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
                     <Button style={{ width: '5%' }} onClick={handleClose}></Button>

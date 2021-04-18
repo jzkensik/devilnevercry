@@ -18,9 +18,7 @@ function CreateUser() {
             return
         }
         var username = document.getElementById('username-form').value;
-        console.log(username)
         var password = document.getElementById('password-form').value;
-        console.log(password)
         var confirmPassword = document.getElementById('confirm-password-form').value;
         var dateOfBirth = document.getElementById('dob-form').value;
         var email = document.getElementById('email-form').value;

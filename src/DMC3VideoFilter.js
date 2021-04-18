@@ -17,23 +17,6 @@ import CharacterFilter from './CharacterFilter.js';
 
 function VideoFilter() {
 
-    // function buttonClicked(id) {
-    //     console.log(id)
-    //     console.log(document.getElementById(id));
-    //     //It's always doing the top one on the list, we need some sort of iterative thing
-
-    //     //if (document.getElementById(id).addEventListener("click", function() {
-    //     //    document.getElementById(id).style.backgroundColor = 'black';
-    //     //}
-
-    //     //if (document.getElementById(id).style.backgroundColor == 'grey') {
-    //     //   document.getElementById(id).style.backgroundColor = 'black';
-    //     //}
-    //     //else {
-    //     //  document.getElementById(id).style.backgroundColor = 'grey';
-    //     //}
-
-    // }
     //We'll have VideoFilter take in the number of props as playable characters in a game, 
     //as well as their images. Then we just iterate through until we get all of them. 
     //The series doesn't have enough player characters that we should worry about more than 5
@@ -49,12 +32,72 @@ function VideoFilter() {
     //     }
     // })
     const [newData, setData] = useState(false);
+    var [color, setColor] = useState('red')
+    var filtersClicked = [false, false, false, false]
+
+    //now we change background_color according to whichever has been clicked
+    //var [outline, setOutline] = useState(false)
+    // const divStyle = {
+    //     color: 'blue',
+    //     backgroundImage: 'url(' + imgUrl + ')',
+    //   };
+    // var dante3 = document.getElementById('dante3')
+    // console.log(dante3)
+
     useEffect(() => {
+        //we put a boolean here on each of 'em, then use that to grab the SQL
+        document.getElementById('dante3').addEventListener("click", function () {
+            console.log('clickedDante')
+            if (!filtersClicked[0]) {
+                filtersClicked[0] = true;
+            }
+            else {
+                filtersClicked[0] = false;
+            }
+        })
+        document.getElementById('vergil3').addEventListener("click", function () {
+            console.log('clickedVergil')
+            if (!filtersClicked[1]) {
+                console.log('vergilTrue')
+                filtersClicked[1] = true;
+            }
+            else {
+                console.log('vergilFalse')
+                filtersClicked[1] = false;
+            }
+        })
+        document.getElementById('dv3').addEventListener("click", function () {
+            console.log('clickedDuo')
+            if (!filtersClicked[2]) {
+                filtersClicked[2] = true;
+            }
+            else {
+                filtersClicked[2] = false;
+            }
+        })
+        document.getElementById('other3').addEventListener("click", function () {
+            console.log('clickedOther')
+            if (!filtersClicked[3]) {
+                filtersClicked[3] = true;
+            }
+            else {
+                filtersClicked[3] = false;
+            }
+        })
+        // var square = document.getElementById("square"),
+        // clickMe = document.getElementById('clickMe'); //Keeping it unobstrusive
+        // var button = this;
+        // square.style.backgroundColor = "#fa4";
+        // button.setAttribute("disabled", "true");
+        // setTimeout(clearDemo, 2000, button);
+        //clickMe.onclick = doDemo; 
         async function getContent() {
             if (newData.prop) {
                 return
             }
-            await fetch('http://localhost:8080/videos/all',
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0] }),
+                // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
+                //the URL works, we just need to figure out how to push the info through
                 {
                     method: "GET",
                     headers: {}
@@ -63,21 +106,21 @@ function VideoFilter() {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0] }))
                     setData(clone.data[0].player_character)
                 })
 
         }
         getContent();
     }, [newData])
-    console.log(newData)
     return (
         <div style={{ 'backgroundColor': '#666699' }}>
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
-                    <CharacterFilter filterId='dante3' image={Dante} name="Dante"></CharacterFilter>
-                    <CharacterFilter filterId='vergil3' image={Vergil} name="Vergil"></CharacterFilter>
-                    <CharacterFilter filterId='dv3' image={DanteAndVergil} name={a} ></CharacterFilter>
-                    <CharacterFilter filterId='other3' image={Other} name="Other" ></CharacterFilter>
+                    <CharacterFilter id='dante3' image={Dante} name="Dante" currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='other3' image={Other} name="Other" currentColor={color}></CharacterFilter>
                 </Row>
                 <Row>
                     <h1>{newData}</h1>

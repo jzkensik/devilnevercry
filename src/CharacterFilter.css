@@ -3,6 +3,7 @@
 }
 
 .char-filter-content {
+    background-color: black;
     display: flex; 
     padding-left: 0;
     padding-right: 0;

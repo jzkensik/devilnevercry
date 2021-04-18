@@ -4,6 +4,7 @@ import './index.css';
 import HomePage from './HomePage';
 import DMCNavbar from './DMCNavbar';
 import VideoPage from './VideoPage';
+import { BrowserRouter as Router } from 'react-router-dom';
 import CharacterFilter from './CharacterFilter';
 import VideoThumbnail from './VideoThumbnail';
 import UploadVideo from './UploadVideo';

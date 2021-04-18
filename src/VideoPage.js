@@ -35,7 +35,7 @@ function VideoPage() {
             //rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
             //rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
             //}
-            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ display: 'flex', justifyContent: 'center', 'padding-top': 50, 'padding-left': 80, 'padding-right': 80 }}>{generateVideos(newData)}</Row></Container>
+            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ display: 'flex', justifyContent: 'center', 'paddingTop': 50, 'paddingLeft': 80, 'paddingRight': 80 }}>{generateVideos(newData)}</Row></Container>
         }
         catch (exception) {
         }
@@ -58,7 +58,6 @@ function VideoPage() {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
-                    console.log(clone.data)
                     setData(clone.data)
                     //we need the data to be securely in here. Can't access it outside.
                     //we'll likely need to use a map in useEffect and somehow get that outside

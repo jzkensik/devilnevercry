@@ -12,24 +12,22 @@ import './CharacterFilter.css';
 
 function CharacterFilter(props) {
     useEffect(() => {
-        document.getElementById('char-filter-' + props.filterId).addEventListener("click", function () {
+        document.getElementById(props.id).addEventListener("click", function () {
             if (backgroundColor == 'black') {
                 setColor('blue')
                 //setOutline('5px dotted white')
             }
             else {
                 setColor('black')
-                setOutline(false)
             }
         })
     })
-    var [backgroundColor, setColor] = useState('black')
-    var [outline, setOutline] = useState(false)
+    var [backgroundColor, setColor] = useState(props.currentColor)
     return (
 
         <Container className='char-filter' style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'alignItems': 'baseline' }}>
             <Row>
-                <Col id={'char-filter-' + props.filterId} className='char-filter-content' style={{ 'backgroundColor': backgroundColor, 'outline': outline }} >
+                <Col id={props.id} className='char-filter-content' style={{ 'backgroundColor': backgroundColor }} >
                     <Image style={{ 'position': 'relative', 'width': '50%' }} src={props.image || Vergil} fluid />
                     <div style={{ 'width': '50%', 'textAlign': 'center' }}><h1 className='filter-text' style={{ 'position': 'absolute', 'color': 'white' }}>{props.name || "Vergil"}</h1></div>
                 </Col>
