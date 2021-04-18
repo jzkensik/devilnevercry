@@ -82,7 +82,6 @@ function VideoPage() {
     //Pagination could be good here
     return (
         <div>
-            <DMCNavbar></DMCNavbar>
             <DMC3VideoFilter></DMC3VideoFilter>
             {iframeAdder()}
         </div>
