@@ -8,6 +8,7 @@ function UploadFields(props) {
     const [character, setCharacter] = useState(0)
     const [version, setVersion] = useState(0)
     const [currentSlide, setSlide] = useState(0)
+    const gameMap = { 0: 'Devil May Cry', 1: 'Devil May Cry 2', 2: 'Devil May Cry 3', 3: 'Devil May Cry 4', 4: 'DMC: Devil May Cry', 5: 'Devil May Cry 5' }
     try {
         var video_title = document.getElementById('title-form').value;
         var video_link = document.getElementById('link-form').value;
@@ -17,7 +18,7 @@ function UploadFields(props) {
     }
 
     async function sendContent() {
-        var data = { game: props.field, title: video_title, link: video_link, character: character, version: version }
+        var data = { game: gameMap[props.field], title: video_title, link: video_link, character: character, version: version }
         await fetch('http://localhost:8080/videos/new-video',
             {
                 method: "POST",
