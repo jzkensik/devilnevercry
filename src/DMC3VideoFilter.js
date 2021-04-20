@@ -46,6 +46,8 @@ function VideoFilter() {
 
     useEffect(() => {
         //we put a boolean here on each of 'em, then use that to grab the SQL
+        console.log('newData below')
+        console.log(newData)
         document.getElementById('dante3').addEventListener("click", function () {
             console.log('clickedDante')
             if (!filtersClicked[0]) {
@@ -99,8 +101,7 @@ function VideoFilter() {
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
-                    method: "GET",
-                    headers: {}
+                    method: "GET"
                 })
                 .then(async (response) => response.json())
                 .then(async (data) => {
