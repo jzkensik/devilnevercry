@@ -32,8 +32,8 @@ function VideoFilter() {
     //     }
     // })
     const [newData, setData] = useState(false);
-    var [color, setColor] = useState('red')
-    var filtersClicked = [false, false, false, false]
+    var [color, setColor] = useState('black')
+    var filtersClicked = [true, false, false, false]
 
     //now we change background_color according to whichever has been clicked
     //var [outline, setOutline] = useState(false)
@@ -95,7 +95,7 @@ function VideoFilter() {
             if (newData.prop) {
                 return
             }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0] }),
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'dmc3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
@@ -106,7 +106,7 @@ function VideoFilter() {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
-                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0] }))
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ vergil: filtersClicked[1], dante: filtersClicked[0], duo: filtersClicked[2], other: filtersClicked[3] }))
                     setData(clone.data[0].player_character)
                 })
 

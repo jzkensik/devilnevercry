@@ -11,10 +11,10 @@ function App() {
   return (
     <Router>
       <div>
-        <div class="sticky">
+        <div class="sticky" style={{ zIndex: 3 }}>
           <DMCNavbar></DMCNavbar>
         </div>
-        <Switch>
+        <Switch style={{ zIndex: 2 }}>
           <Route path='/' exact component={HomePage} />
           <Route path='/devilmaycry3' component={VideoPage} />
           <Route path='/upload' component={UploadVideo} />
