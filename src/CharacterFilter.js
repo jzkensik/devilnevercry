@@ -15,6 +15,9 @@ function CharacterFilter(props) {
         document.getElementById(props.id).addEventListener("click", function () {
             if (backgroundColor == 'black') {
                 setColor('blue')
+                console.log('the one that matters')
+                console.log(props.selected)
+
                 //setOutline('5px dotted white')
             }
             else {

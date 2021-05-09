@@ -35,12 +35,15 @@ function DMCNavbar() {
     return (
         <div>
             <Navbar bg="dark" expand="lg">
-                <Link to="/">Home</Link>
-                <Navbar.Brand href="#home">Devil Never Cry</Navbar.Brand>
+                <LinkContainer to="/">
+                    <Navbar.Brand>Devil Never Cry</Navbar.Brand>
+                </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id='main-navbar' className="mr-auto">
-                        <Link to="/devilmaycry3">Users</Link>
+                        <LinkContainer to="/devilmaycry3">
+                            <Nav.Link>Users</Nav.Link>
+                        </LinkContainer>
                         <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
@@ -52,7 +55,9 @@ function DMCNavbar() {
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
                         </NavDropdown>
-                        <Link to="/upload">Upload Video</Link>
+                        <LinkContainer to="/upload">
+                            <Nav.Link>Upload Video</Nav.Link>
+                        </LinkContainer>
                         <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
                     </Nav>
                     <Form inline>

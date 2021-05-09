@@ -33,7 +33,7 @@ function VideoFilter() {
     // })
     const [newData, setData] = useState(false);
     var [color, setColor] = useState('black')
-    var filtersClicked = [true, false, false, false]
+    var [filtersClicked, setFilters] = useState([false, false, false, false])
 
     //now we change background_color according to whichever has been clicked
     //var [outline, setOutline] = useState(false)
@@ -46,25 +46,21 @@ function VideoFilter() {
 
     useEffect(() => {
         //we put a boolean here on each of 'em, then use that to grab the SQL
-        console.log('newData below')
-        console.log(newData)
         document.getElementById('dante3').addEventListener("click", function () {
             console.log('clickedDante')
             if (!filtersClicked[0]) {
-                filtersClicked[0] = true;
+                setFilters([true, false, false, false]);
             }
             else {
-                filtersClicked[0] = false;
+                setFilters([false, false, false, false]);
             }
         })
         document.getElementById('vergil3').addEventListener("click", function () {
             console.log('clickedVergil')
             if (!filtersClicked[1]) {
-                console.log('vergilTrue')
                 filtersClicked[1] = true;
             }
             else {
-                console.log('vergilFalse')
                 filtersClicked[1] = false;
             }
         })
@@ -113,15 +109,16 @@ function VideoFilter() {
 
         }
         getContent();
-    }, [newData])
+    }, [newData, filtersClicked])
+
     return (
         <div style={{ 'backgroundColor': '#666699' }}>
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
-                    <CharacterFilter id='dante3' image={Dante} name="Dante" currentColor={color}></CharacterFilter>
-                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" currentColor={color}></CharacterFilter>
-                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} currentColor={color}></CharacterFilter>
-                    <CharacterFilter id='other3' image={Other} name="Other" currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='dante3' image={Dante} name="Dante" currentColor={color} selected={filtersClicked[0]}></CharacterFilter>
+                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" currentColor={color} selected={filtersClicked[1]}></CharacterFilter>
+                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} currentColor={color} selected={filtersClicked[2]}></CharacterFilter>
+                    <CharacterFilter id='other3' image={Other} name="Other" currentColor={color} selected={filtersClicked[3]}></CharacterFilter>
                 </Row>
                 <Row>
                     <h1>{newData}</h1>
