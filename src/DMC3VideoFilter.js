@@ -32,9 +32,32 @@ function VideoFilter() {
     //     }
     // })
     const [newData, setData] = useState(false);
-    var [color, setColor] = useState('black')
-    var [filtersClicked, setFilters] = useState([false, false, false, false])
+    const [color, setColor] = useState('black')
+    const [filtersClicked, setFilters] = useState(false)
 
+    try {
+        console.log('made it here')
+        window.addEventListener('load', function () {
+            console.log('made it to filter')
+            document.getElementById('dante3').addEventListener("click", danteClick);
+        });
+    } catch (e) {
+        console.log('sad trombone noise')
+    }
+
+    function danteClick() {
+        console.log('clickedDante')
+        console.log(filtersClicked[0])
+        if (filtersClicked[0] == false) {
+            console.log('first')
+            setFilters([true, false, false, false]);
+            console.log(filtersClicked[0])
+        }
+        else {
+            console.log('second')
+            setFilters([false, false, false, false]);
+        }
+    }
     //now we change background_color according to whichever has been clicked
     //var [outline, setOutline] = useState(false)
     // const divStyle = {
@@ -45,43 +68,6 @@ function VideoFilter() {
     // console.log(dante3)
 
     useEffect(() => {
-        //we put a boolean here on each of 'em, then use that to grab the SQL
-        document.getElementById('dante3').addEventListener("click", function () {
-            console.log('clickedDante')
-            if (!filtersClicked[0]) {
-                setFilters([true, false, false, false]);
-            }
-            else {
-                setFilters([false, false, false, false]);
-            }
-        })
-        document.getElementById('vergil3').addEventListener("click", function () {
-            console.log('clickedVergil')
-            if (!filtersClicked[1]) {
-                filtersClicked[1] = true;
-            }
-            else {
-                filtersClicked[1] = false;
-            }
-        })
-        document.getElementById('dv3').addEventListener("click", function () {
-            console.log('clickedDuo')
-            if (!filtersClicked[2]) {
-                filtersClicked[2] = true;
-            }
-            else {
-                filtersClicked[2] = false;
-            }
-        })
-        document.getElementById('other3').addEventListener("click", function () {
-            console.log('clickedOther')
-            if (!filtersClicked[3]) {
-                filtersClicked[3] = true;
-            }
-            else {
-                filtersClicked[3] = false;
-            }
-        })
         // var square = document.getElementById("square"),
         // clickMe = document.getElementById('clickMe'); //Keeping it unobstrusive
         // var button = this;
@@ -89,6 +75,47 @@ function VideoFilter() {
         // button.setAttribute("disabled", "true");
         // setTimeout(clearDemo, 2000, button);
         //clickMe.onclick = doDemo; 
+        //document.getElementById('dante3').addEventListener("click", danteClick);
+        document.getElementById('vergil3').addEventListener("click", vergilClick);
+        document.getElementById('dv3').addEventListener("click", dvClick);
+        document.getElementById('other3').addEventListener("click", otherClick);
+        function danteClick() {
+            console.log('clickedDante')
+            console.log(filtersClicked[0])
+            if (filtersClicked[0] == false) {
+                console.log('first')
+                setFilters([true, false, false, false]);
+                console.log(filtersClicked[0])
+            }
+            else {
+                console.log('second')
+                setFilters([false, false, false, false]);
+            }
+        }
+        function vergilClick() {
+            if (!filtersClicked[1]) {
+                setFilters([false, true, false, false]);
+            }
+            else {
+                setFilters([false, false, false, false]);
+            }
+        }
+        function dvClick() {
+            if (!filtersClicked[2]) {
+                setFilters([false, false, true, false]);
+            }
+            else {
+                setFilters([false, false, false, false]);
+            }
+        }
+        function otherClick() {
+            if (!filtersClicked[3]) {
+                setFilters([false, false, false, true]);
+            }
+            else {
+                setFilters([false, false, false, false]);
+            }
+        }
         async function getContent() {
             if (newData.prop) {
                 return
@@ -115,10 +142,10 @@ function VideoFilter() {
         <div style={{ 'backgroundColor': '#666699' }}>
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
-                    <CharacterFilter id='dante3' image={Dante} name="Dante" currentColor={color} selected={filtersClicked[0]}></CharacterFilter>
-                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" currentColor={color} selected={filtersClicked[1]}></CharacterFilter>
-                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} currentColor={color} selected={filtersClicked[2]}></CharacterFilter>
-                    <CharacterFilter id='other3' image={Other} name="Other" currentColor={color} selected={filtersClicked[3]}></CharacterFilter>
+                    <CharacterFilter id='dante3' image={Dante} name="Dante" currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} currentColor={color}></CharacterFilter>
+                    <CharacterFilter id='other3' image={Other} name="Other" currentColor={color}></CharacterFilter>
                 </Row>
                 <Row>
                     <h1>{newData}</h1>
