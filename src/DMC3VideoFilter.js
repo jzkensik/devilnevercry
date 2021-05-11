@@ -33,30 +33,44 @@ function VideoFilter() {
     // })
     const [newData, setData] = useState(false);
     const [color, setColor] = useState('black')
-    const [filtersClicked, setFilters] = useState(false)
+    //const [filtersClicked, setFilters] = useState([false, false, false, false])
+    var filtersClicked = [false, false, false, false]
 
     try {
-        console.log('made it here')
         window.addEventListener('load', function () {
             console.log('made it to filter')
             document.getElementById('dante3').addEventListener("click", danteClick);
+            document.getElementById('vergil3').addEventListener("click", vergilClick);
         });
     } catch (e) {
         console.log('sad trombone noise')
     }
 
     function danteClick() {
+        //let's just let people pick multiple characters in the filters
+        //we'll do this and then update it in upload video.
+        //use currentSelection for now. see if you want to use this or the URL, or both
+        //I'm thinking you use this to feed into the URL like we're doing, but better
         console.log('clickedDante')
-        console.log(filtersClicked[0])
         if (filtersClicked[0] == false) {
             console.log('first')
-            setFilters([true, false, false, false]);
-            console.log(filtersClicked[0])
+            filtersClicked[0] = true
         }
         else {
             console.log('second')
-            setFilters([false, false, false, false]);
+            filtersClicked[0] = false
         }
+    }
+    function vergilClick() {
+        console.log(filtersClicked)
+
+        //it's still not reaching the else. We need to figure out why
+        // if (!filtersClicked[1]) {
+        //     setFilters([false, true, false, false]);
+        // }
+        // else {
+        //     setFilters([false, false, false, false]);
+        // }
     }
     //now we change background_color according to whichever has been clicked
     //var [outline, setOutline] = useState(false)
@@ -76,46 +90,24 @@ function VideoFilter() {
         // setTimeout(clearDemo, 2000, button);
         //clickMe.onclick = doDemo; 
         //document.getElementById('dante3').addEventListener("click", danteClick);
-        document.getElementById('vergil3').addEventListener("click", vergilClick);
-        document.getElementById('dv3').addEventListener("click", dvClick);
-        document.getElementById('other3').addEventListener("click", otherClick);
-        function danteClick() {
-            console.log('clickedDante')
-            console.log(filtersClicked[0])
-            if (filtersClicked[0] == false) {
-                console.log('first')
-                setFilters([true, false, false, false]);
-                console.log(filtersClicked[0])
-            }
-            else {
-                console.log('second')
-                setFilters([false, false, false, false]);
-            }
-        }
-        function vergilClick() {
-            if (!filtersClicked[1]) {
-                setFilters([false, true, false, false]);
-            }
-            else {
-                setFilters([false, false, false, false]);
-            }
-        }
-        function dvClick() {
-            if (!filtersClicked[2]) {
-                setFilters([false, false, true, false]);
-            }
-            else {
-                setFilters([false, false, false, false]);
-            }
-        }
-        function otherClick() {
-            if (!filtersClicked[3]) {
-                setFilters([false, false, false, true]);
-            }
-            else {
-                setFilters([false, false, false, false]);
-            }
-        }
+        //document.getElementById('dv3').addEventListener("click", dvClick);
+        // document.getElementById('other3').addEventListener("click", otherClick);
+        // function dvClick() {
+        //     if (!filtersClicked[2]) {
+        //         setFilters([false, false, true, false]);
+        //     }
+        //     else {
+        //         setFilters([false, false, false, false]);
+        //     }
+        // }
+        // function otherClick() {
+        //     if (!filtersClicked[3]) {
+        //         setFilters([false, false, false, true]);
+        //     }
+        //     else {
+        //         setFilters([false, false, false, false]);
+        //     }
+        // }
         async function getContent() {
             if (newData.prop) {
                 return
