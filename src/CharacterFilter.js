@@ -11,7 +11,7 @@ import DMCNavbar from './DMCNavbar.js';
 import './CharacterFilter.css';
 
 function CharacterFilter(props) {
-    var [backgroundColor, setColor] = useState(props.currentColor)
+    var [backgroundColor, setColor] = useState('black')
     //you shouldn't add the event listener inside of useEffect
     try {
         document.getElementById(props.id).addEventListener("click", changeColor);
@@ -33,7 +33,7 @@ function CharacterFilter(props) {
     // }, [backgroundColor])
     return (
 
-        <Container className='char-filter' style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'alignItems': 'baseline' }}>
+        <Container className='char-filter' style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'alignItems': 'baseline' }} onClick={props.onClick}>
             <Row>
                 <Col id={props.id} className='char-filter-content' style={{ 'backgroundColor': backgroundColor }} >
                     <Image style={{ 'position': 'relative', 'width': '50%' }} src={props.image || Vergil} fluid />
