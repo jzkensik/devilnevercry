@@ -55,7 +55,7 @@ function VideoFilter() {
             // if (newData.prop) {
             //     return
             // }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'dmc3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
@@ -65,7 +65,7 @@ function VideoFilter() {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
-                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ vergil: filtersClicked[1], dante: filtersClicked[0], duo: filtersClicked[2], other: filtersClicked[3] }))
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }))
                     setData(clone.data[0].player_character)
                 })
 
@@ -79,9 +79,9 @@ function VideoFilter() {
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
                     <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => setFilters([!filtersClicked[0], filtersClicked[1], filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
-                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => console.log(filtersClicked)}></CharacterFilter>
+                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => setFilters([filtersClicked[0], !filtersClicked[1], filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
                     <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => setFilters([filtersClicked[0], filtersClicked[1], !filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
-                    <CharacterFilter id='other3' image={Other} name="Other" ></CharacterFilter>
+                    <CharacterFilter id='other3' image={Other} name="Other"></CharacterFilter>
                 </Row>
                 <Row>
                     <h1>{newData}</h1>

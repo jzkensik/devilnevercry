@@ -8,8 +8,11 @@ router.get('/all', async function (req, res, next) {
     //we'll need subfunctions, but we can use query string parameters to determine game
     //try to tie this to the turning things blue after all. Look into reloading components
     console.log('below')
-    console.log(req.query.game)
+    // console.log(req.query.game)
+    // console.log(req.query)
     console.log('about to go into switch')
+    console.log(req.query)
+    //we might just want to use guidelines to figure this out for now. start w game, then player_character, and figure it out later
     // switch (req.query.game) {
     //     case 'dmc1':
     //     case 'dmc2':
@@ -31,8 +34,9 @@ router.get('/all', async function (req, res, next) {
     //     //a sequence of checks here to construct the WHERE clause of the query.
     //     //switch statements per game first, then after that check the character
     // }
+    console.log(req.query.game)
     try {
-        res.json(await videos.returnAllVids('Devil May Cry 3'));
+        res.json(await videos.returnAllVids(req.query.game));
         //this works for the appended query, but not switch statement. Why?
     } catch (err) {
         console.error(`Error while getting programming languages `, err.message);
