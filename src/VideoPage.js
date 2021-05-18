@@ -76,7 +76,7 @@ function VideoPage() {
             // if (newData.prop) {
             //     return
             // }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }),
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
@@ -86,7 +86,7 @@ function VideoPage() {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
-                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }))
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }))
                     setData(clone.data)
                 })
 
