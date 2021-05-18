@@ -13,9 +13,10 @@ import Other from './images/devilmaycry3/other.png';
 import Vergil from './images/devilmaycry3/vergil_dmc3.png';
 import DMCNavbar from './DMCNavbar.js';
 import CharacterFilter from './CharacterFilter.js';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 
-function VideoFilter() {
+function VideoFilter(props) {
 
     //We'll have VideoFilter take in the number of props as playable characters in a game, 
     //as well as their images. Then we just iterate through until we get all of them. 
@@ -24,8 +25,7 @@ function VideoFilter() {
     var a = '\xa0\xa0\xa0' + "Duo";
     const [newData, setData] = useState(false);
     const [color, setColor] = useState('black')
-    const [filtersClicked, setFilters] = useState([false, false, false, false])
-    var copyClicked = [false, false, false, false]
+    //const [filtersClicked, setFilters] = useState([false, false, false, false])
 
     // try {
     //     window.addEventListener('load', function () {
@@ -48,43 +48,43 @@ function VideoFilter() {
     // useEffect(() => {
 
     // }, [])
-    useEffect(() => {
-        async function getContent() {
-            //this'll work if we can get UseEffect to work on filter selection
-            //(for the sake of minimizing renders, maybe add an "apply" button)
-            // if (newData.prop) {
-            //     return
-            // }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
-                // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
-                //the URL works, we just need to figure out how to push the info through
-                {
-                    method: "GET"
-                })
-                .then(async (response) => response.json())
-                .then(async (data) => {
-                    let clone = JSON.parse(JSON.stringify(data))
-                    clone.prop = 2
-                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }))
-                    setData(clone.data[0].player_character)
-                })
+    // useEffect(() => {
+    //     async function getContent() {
+    //         //this'll work if we can get UseEffect to work on filter selection
+    //         //(for the sake of minimizing renders, maybe add an "apply" button)
+    //         // if (newData.prop) {
+    //         //     return
+    //         // }
+    //         await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
+    //             // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
+    //             //the URL works, we just need to figure out how to push the info through
+    //             {
+    //                 method: "GET"
+    //             })
+    //             .then(async (response) => response.json())
+    //             .then(async (data) => {
+    //                 let clone = JSON.parse(JSON.stringify(data))
+    //                 clone.prop = 2
+    //                 console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }))
+    //                 setData(clone.data[0].player_character)
+    //             })
 
-        }
-        getContent();
-        console.log('run through')
-    }, [newData, filtersClicked])
+    //     }
+    //     getContent();
+    //     console.log('run through')
+    // }, [filtersClicked])
 
     return (
         <div style={{ 'backgroundColor': '#666699' }}>
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
-                    <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => setFilters([!filtersClicked[0], filtersClicked[1], filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
-                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => setFilters([filtersClicked[0], !filtersClicked[1], filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
-                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => setFilters([filtersClicked[0], filtersClicked[1], !filtersClicked[2], filtersClicked[3]])}></CharacterFilter>
+                    <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => props.filterFunction([!props.filters[0], props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
+                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => props.filterFunction([props.filters[0], !props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
+                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => props.filterFunction([props.filters[0], props.filters[1], !props.filters[2], props.filters[3]])}></CharacterFilter>
                     <CharacterFilter id='other3' image={Other} name="Other"></CharacterFilter>
                 </Row>
                 <Row>
-                    <h1>{newData}</h1>
+                    <h1>{props.dataRecieved}</h1>
                 </Row>
             </Container>
         </div >

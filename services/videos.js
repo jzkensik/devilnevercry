@@ -12,17 +12,17 @@ function getRandomInt(min, max) {
 async function returnAllVids(game) {
     //maybe a simple iteration that adds "OR for all of them after the first one. We don't have to do anything specific here so really we just have to isolate them in the parameters
     //we need to figure out how to write an SQL query based off of the trues and falses that we just got
+    //first let's just make it work with game consistently
     // for (item in query) {
     //     console.log(item)
     // }
-    console.log(`SELECT * FROM Videos WHERE version = '` + 'Playstation 2' + "'")
+    console.log(`SELECT * FROM Videos WHERE game = '` + game + "'")
     const rows = await db.query(
         //`SELECT * FROM Videos`
-        `SELECT * FROM Videos WHERE version = '` + 'Playstation 2' + "'"
+        `SELECT * FROM Videos WHERE game = '` + game + "'"
         //`SELECT * FROM Videos WHERE game = '` + query.game + "' AND player_character = '" +  
         //`SELECT * FROM Videos`
     );
-    console.log(rows)
     const data = helper.emptyOrRows(rows);
     return {
         data

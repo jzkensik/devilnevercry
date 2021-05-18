@@ -42,31 +42,58 @@ function VideoPage() {
     }
 
     var [newData, setData] = useState(false);
+    const [filtersClicked, setFilters] = useState([false, false, false, false])
+    // useEffect(() => {
+    //     async function getContent() {
+    //         if (newData) {
+    //             console.log('repeat')
+    //             //the issue is that this doesn't trigger now
+    //             return
+    //         }
+    //         await fetch('http://localhost:8080/videos/all',
+    //             {
+    //                 method: "GET",
+    //                 headers: {}
+    //             })
+    //             .then(async (response) => response.json())
+    //             .then(async (data) => {
+    //                 let clone = JSON.parse(JSON.stringify(data))
+    //                 clone.prop = 2
+    //                 setData(clone.data)
+    //                 //we need the data to be securely in here. Can't access it outside.
+    //                 //we'll likely need to use a map in useEffect and somehow get that outside
+
+    //             })
+
+    //     }
+    //     getContent();
+    // }, [newData])
+
     useEffect(() => {
         async function getContent() {
-            if (newData) {
-                console.log('repeat')
-                //the issue is that this doesn't trigger now
-                return
-            }
-            await fetch('http://localhost:8080/videos/all',
+            //this'll work if we can get UseEffect to work on filter selection
+            //(for the sake of minimizing renders, maybe add an "apply" button)
+            // if (newData.prop) {
+            //     return
+            // }
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }),
+                // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
+                //the URL works, we just need to figure out how to push the info through
                 {
-                    method: "GET",
-                    headers: {}
+                    method: "GET"
                 })
                 .then(async (response) => response.json())
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ dante: filtersClicked[0], vergil: filtersClicked[1], duo: filtersClicked[2], other: filtersClicked[3] }))
                     setData(clone.data)
-                    //we need the data to be securely in here. Can't access it outside.
-                    //we'll likely need to use a map in useEffect and somehow get that outside
-
                 })
 
         }
         getContent();
-    }, [newData])
+        console.log('run through')
+    }, [filtersClicked])
 
     //as we thought, this gets around the issue. Now we can access this thing
     //by using newData as an array
@@ -82,7 +109,7 @@ function VideoPage() {
     //Pagination could be good here
     return (
         <div>
-            <DMC3VideoFilter></DMC3VideoFilter>
+            <DMC3VideoFilter filters={filtersClicked} filterFunction={setFilters}></DMC3VideoFilter>
             {iframeAdder()}
         </div>
     )
