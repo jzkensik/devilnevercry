@@ -6,36 +6,48 @@ import Canvas from './Canvas.js';
 import DMCNavbar from './DMCNavbar.js';
 import DMC3VideoFilter from './DMC3VideoFilter.js';
 import DMC5VideoFilter from './DMC5VideoFilter.js';
+import CharacterFilter from './CharacterFilter.js';
+import Dante from './images/devilmaycry3/dante_dmc3.png';
+import DanteAndVergil from './images/devilmaycry3/dante_and_vergil.jpg';
+import Other from './images/devilmaycry3/other.png';
+import Vergil from './images/devilmaycry3/vergil_dmc3.png';
 import VideoThumbnail from './VideoThumbnail.js'
 import parse, { domToReact } from 'html-react-parser';
 import './VideoPage.css';
 
-function VideoPage() {
+function VideoPage(props) {
 
     const filterList = {
-        devilMayCry3: {
-            'dante': {
-                id: 'dante3',
-                name: 'Dante',
-                image: Dante
-            },
-            'vergil': {
-                id: 'vergil3',
-                name: 'Vergil',
-                image: Vergil
-            },
-            'dante_and_vergil': {
-                id: 'dv3',
-                name: 'Duo',
-                image: a
-            },
-            'other': {
-                id: 'other3',
-                name: 'Other',
-                image: Other
-            }
+        dmc3: {
+            filters: [
+                {
+                    id: 'dante3',
+                    name: 'Dante',
+                    image: Dante,
+                    filterNum: 0
+                },
+                {
+                    id: 'vergil3',
+                    name: 'Vergil',
+                    image: Vergil,
+                    filterNum: 1
+                },
+                {
+                    id: 'dv3',
+                    name: 'Duo',
+                    image: DanteAndVergil,
+                    filterNum: 2
+                },
+                {
+                    id: 'other3',
+                    name: 'Other',
+                    image: Other,
+                    filterNum: 3
+                }
+            ],
+            filterCount: 4
         },
-        devilMayCry5: [
+        dmc5: [
             'nero',
             'dante',
             'v',
@@ -43,7 +55,35 @@ function VideoPage() {
         ]
     }
 
+    switch (props.game) {
+        case 'dmc1':
+            var initFilters = [false, false]
+        case 'dmc2':
+            var initFilters = [false, false, false, false]
+        case 'dmc3':
+            var initFilters = [false, false, false, false]
+    }
+
+    function generateFilters() {
+        return (
+            (filterList[props.game]['filters']).map((item) => (
+                <Fragment>
+                    <CharacterFilter id={item.id} image={item.image} name={item.name} onClick={() => { flipFilters(item.filterNum) }}></CharacterFilter>
+                </Fragment>
+            )
+            ))
+    }
+
+    function flipFilters(filterNumber) {
+        initFilters[filterNumber] = !initFilters[filterNumber]
+        console.log(initFilters)
+        //setFilters(initFilters)
+        console.log('the important one')
+        console.log(filtersClicked)
+    }
+
     function generateVideos(video_links) {
+        console.log(video_links)
         //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
         return (
             video_links.map((item) => (
@@ -54,6 +94,15 @@ function VideoPage() {
             ));
     }
     //for tomorrow: rename iframeAdder to be more fitting, make videos left-aligned inside of container, add a POST API call OR sign-in functions
+    function filterAdder() {
+        try {
+            return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}>{generateFilters()}</Container>
+        }
+        catch (exception) {
+            console.log(exception)
+            console.log('issue with the filters')
+        }
+    }
 
     function iframeAdder() {
         try { //css modules
@@ -71,7 +120,7 @@ function VideoPage() {
     }
 
     var [newData, setData] = useState(false);
-    const [filtersClicked, setFilters] = useState([false, false, false, false])
+    const [filtersClicked, setFilters] = useState(initFilters)
     // useEffect(() => {
     //     async function getContent() {
     //         if (newData) {
@@ -136,9 +185,11 @@ function VideoPage() {
 
     //next goal for videos: see if you can queue the first 30 results and auto-display when clicked back to the game page
     //Pagination could be good here
+
+    //<DMC3VideoFilter filters={filtersClicked} filterFunction={setFilters}>{filterAdder()}</DMC3VideoFilter>
     return (
         <div>
-            <DMC3VideoFilter filters={filtersClicked} filterFunction={setFilters}></DMC3VideoFilter>
+            <DMC3VideoFilter dantes={filterAdder()} filters={filtersClicked}></DMC3VideoFilter>
             {iframeAdder()}
         </div>
     )

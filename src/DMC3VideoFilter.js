@@ -132,15 +132,16 @@ function VideoFilter(props) {
     //     catch (exception) {
     //     }
     // }
+    // <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => props.filterFunction([!props.filters[0], props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
+    //                 <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => props.filterFunction([props.filters[0], !props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
+    //                 <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => props.filterFunction([props.filters[0], props.filters[1], !props.filters[2], props.filters[3]])}></CharacterFilter>
+    //                 <CharacterFilter id='other3' image={Other} onClick={() => console.log(filterList['devilMayCry3'])} name="Other"></CharacterFilter>
 
     return (
         <div style={{ 'backgroundColor': '#666699' }}>
             <Container>
                 <Row style={{ 'flexWrap': 'nowrap', 'justifyContent': 'space-evenly' }}>
-                    <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => props.filterFunction([!props.filters[0], props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
-                    <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => props.filterFunction([props.filters[0], !props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
-                    <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => props.filterFunction([props.filters[0], props.filters[1], !props.filters[2], props.filters[3]])}></CharacterFilter>
-                    <CharacterFilter id='other3' image={Other} onClick={() => console.log(filterList['devilMayCry3'])} name="Other"></CharacterFilter>
+                    {props.dantes}
                 </Row>
                 <Row>
                     <h1>{props.dataRecieved}</h1>
