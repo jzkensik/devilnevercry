@@ -62,6 +62,7 @@ function VideoPage(props) {
             var initFilters = [false, false, false, false]
         case 'dmc3':
             var initFilters = [false, false, false, false]
+            console.log('inside here')
     }
 
     function generateFilters() {
@@ -77,9 +78,10 @@ function VideoPage(props) {
     function flipFilters(filterNumber) {
         initFilters[filterNumber] = !initFilters[filterNumber]
         console.log(initFilters)
-        //setFilters(initFilters)
-        console.log('the important one')
+        setFilters(initFilters)
         console.log(filtersClicked)
+        //the problem here is that initFilters is reset every time. See if you can put the
+        //switch statement somewhere else
     }
 
     function generateVideos(video_links) {
@@ -189,7 +191,7 @@ function VideoPage(props) {
     //<DMC3VideoFilter filters={filtersClicked} filterFunction={setFilters}>{filterAdder()}</DMC3VideoFilter>
     return (
         <div>
-            <DMC3VideoFilter dantes={filterAdder()} filters={filtersClicked}></DMC3VideoFilter>
+            <DMC3VideoFilter dantes={filterAdder()} filters={filtersClicked} filterFunction={setFilters}></DMC3VideoFilter>
             {iframeAdder()}
         </div>
     )
