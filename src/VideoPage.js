@@ -12,6 +12,37 @@ import './VideoPage.css';
 
 function VideoPage() {
 
+    const filterList = {
+        devilMayCry3: {
+            'dante': {
+                id: 'dante3',
+                name: 'Dante',
+                image: Dante
+            },
+            'vergil': {
+                id: 'vergil3',
+                name: 'Vergil',
+                image: Vergil
+            },
+            'dante_and_vergil': {
+                id: 'dv3',
+                name: 'Duo',
+                image: a
+            },
+            'other': {
+                id: 'other3',
+                name: 'Other',
+                image: Other
+            }
+        },
+        devilMayCry5: [
+            'nero',
+            'dante',
+            'v',
+            'vergil'
+        ]
+    }
+
     function generateVideos(video_links) {
         //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
         return (
@@ -28,9 +59,6 @@ function VideoPage() {
         try { //css modules
             //const addLinks = newData.map((vidEntry) => vidEntry.video_link) //this works
             //maybe now it's a for loop of three?
-            var rowHold = '';
-            var rowHold2 = '';
-
             //for (var i = 0; i < addLinks.length; i = i + 3) {
             //rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
             //rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
@@ -38,6 +66,7 @@ function VideoPage() {
             return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ display: 'flex', justifyContent: 'center', 'paddingTop': 50, 'paddingLeft': 80, 'paddingRight': 80 }}>{generateVideos(newData)}</Row></Container>
         }
         catch (exception) {
+            console.log('videos not grabbed')
         }
     }
 

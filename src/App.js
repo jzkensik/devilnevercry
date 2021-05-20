@@ -8,6 +8,13 @@ import './App.css';
 import DMCNavbar from './DMCNavbar';
 
 function App() {
+
+  // const VideoPageDMC1 = ({ filters }) => {
+  //   return (
+  //     <VideoPage characters></VideoPage>
+  //   )
+  // }
+
   return (
     <Router>
       <div>
@@ -16,7 +23,9 @@ function App() {
         </div>
         <Switch style={{ zIndex: 2 }}>
           <Route path='/' exact component={HomePage} />
-          <Route path='/devilmaycry3' component={VideoPage} />
+          <Route path='/devilmaycry' component={() => <VideoPage game={'dmc1'} filters={[false, false]}></VideoPage>} />
+          <Route path='/devilmaycry2' component={() => <VideoPage game={'dmc2'} filters={[false, false, false, false]}></VideoPage>} />
+          <Route path='/devilmaycry3' component={() => <VideoPage game={'dmc3'} filters={[false, false, false, false]}></VideoPage>} />
           <Route path='/upload' component={UploadVideo} />
         </Switch>
       </div>

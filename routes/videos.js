@@ -9,6 +9,7 @@ router.get('/all', async function (req, res, next) {
     //try to tie this to the turning things blue after all. Look into reloading components
     console.log('below')
     console.log('about to go into switch')
+    console.log(req.query)
     //figure out how to stop that duplicate API request
     //we might just want to use guidelines to figure this out for now. start w game, then player_character, and figure it out later
     // switch (req.query.game) {
@@ -33,7 +34,7 @@ router.get('/all', async function (req, res, next) {
     //     //switch statements per game first, then after that check the character
     // }
     try {
-        res.json(await videos.returnAllVids(req.query.game));
+        res.json(await videos.returnAllVids(req.query));
         //this works for the appended query, but not switch statement. Why?
     } catch (err) {
         console.error(`Error while getting programming languages `, err.message);

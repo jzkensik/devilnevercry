@@ -73,6 +73,65 @@ function VideoFilter(props) {
     //     getContent();
     //     console.log('run through')
     // }, [filtersClicked])
+    // const filterList = {
+    //     devilMayCry3: {
+    //         'dante': {
+    //             id: 'dante3',
+    //             name: 'Dante',
+    //             image: Dante
+    //         },
+    //         'vergil': {
+    //             id: 'vergil3',
+    //             name: 'Vergil',
+    //             image: Vergil
+    //         },
+    //         'dante_and_vergil': {
+    //             id: 'dv3',
+    //             name: 'Duo',
+    //             image: a
+    //         },
+    //         'other': {
+    //             id: 'other3',
+    //             name: 'Other',
+    //             image: Other
+    //         }
+    //     },
+    //     devilMayCry5: [
+    //         'nero',
+    //         'dante',
+    //         'v',
+    //         'vergil'
+    //     ]
+    // }
+    // function generateFilters(game) {
+    //     //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
+    //     return (
+    //         filterList[game].map((item) => (
+    //             <Fragment>
+    //                 <VideoThumbnail player={item.player} url={item.video_link}></VideoThumbnail>
+    //                 <CharacterFilter id=''></CharacterFilter>
+    //             </Fragment>
+    //         )
+    //         ));
+    // }
+    //for tomorrow: rename iframeAdder to be more fitting, make videos left-aligned inside of container, add a POST API call OR sign-in functions
+
+    // function iframeAdder() {
+    //     try { //css modules
+    //         //const addLinks = newData.map((vidEntry) => vidEntry.video_link) //this works
+    //         //maybe now it's a for loop of three?
+    //         var rowHold = '';
+    //         var rowHold2 = '';
+
+    //         //for (var i = 0; i < addLinks.length; i = i + 3) {
+    //         //rowHold = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[0])}></iframe>
+    //         //rowHold2 = <iframe style={{ width: 300 }} src={"//www.youtube.com/embed/" + getId(addLinks[2])}></iframe>
+    //         //}
+    //         return <Container style={{ 'display': 'flex', 'justifyContent': 'center', 'padding': 30 }}><Row style={{ display: 'flex', justifyContent: 'center', 'paddingTop': 50, 'paddingLeft': 80, 'paddingRight': 80 }}>{generateVideos(newData)}</Row></Container>
+    //     }
+    //     catch (exception) {
+    //     }
+    // }
 
     return (
         <div style={{ 'backgroundColor': '#666699' }}>
@@ -81,7 +140,7 @@ function VideoFilter(props) {
                     <CharacterFilter id='dante3' image={Dante} name="Dante" onClick={() => props.filterFunction([!props.filters[0], props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
                     <CharacterFilter id='vergil3' image={Vergil} name="Vergil" onClick={() => props.filterFunction([props.filters[0], !props.filters[1], props.filters[2], props.filters[3]])}></CharacterFilter>
                     <CharacterFilter id='dv3' image={DanteAndVergil} name={a} onClick={() => props.filterFunction([props.filters[0], props.filters[1], !props.filters[2], props.filters[3]])}></CharacterFilter>
-                    <CharacterFilter id='other3' image={Other} name="Other"></CharacterFilter>
+                    <CharacterFilter id='other3' image={Other} onClick={() => console.log(filterList['devilMayCry3'])} name="Other"></CharacterFilter>
                 </Row>
                 <Row>
                     <h1>{props.dataRecieved}</h1>

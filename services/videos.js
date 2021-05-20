@@ -9,17 +9,39 @@ function getRandomInt(min, max) {
 }
 
 
-async function returnAllVids(game) {
+async function returnAllVids(query) {
     //maybe a simple iteration that adds "OR for all of them after the first one. We don't have to do anything specific here so really we just have to isolate them in the parameters
     //we need to figure out how to write an SQL query based off of the trues and falses that we just got
     //first let's just make it work with game consistently
     // for (item in query) {
     //     console.log(item)
     // }
-    console.log(`SELECT * FROM Videos WHERE game = '` + game + "'")
+    var sqlString = `SELECT * FROM Videos WHERE game = '` + query.game + "'"
+    var counter = 0
+    for (item in query) {
+        //the first one starts with a WHERE, the rest are all OR based
+        if (item == 'game') {
+            console.log('here')
+            counter = counter + 1
+            continue;
+        }
+        if (counter == 1 && query[item] == false) {
+            sqlString = sqlString + ` AND player_character = '` + item + "'"
+            counter = counter + 1
+            continue;
+        }
+        console.log(item)
+        console.log(query[item])
+        if (query[item] == false) {
+            sqlString = sqlString + ` OR player_character = '` + item + "'"
+        }
+        counter = counter + 1
+    }
+    counter = 0
+    console.log(sqlString)
     const rows = await db.query(
         //`SELECT * FROM Videos`
-        `SELECT * FROM Videos WHERE game = '` + game + "'"
+        sqlString
         //`SELECT * FROM Videos WHERE game = '` + query.game + "' AND player_character = '" +  
         //`SELECT * FROM Videos`
     );

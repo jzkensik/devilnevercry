@@ -45,12 +45,24 @@ function DMCNavbar() {
                             <Nav.Link>Users</Nav.Link>
                         </LinkContainer>
                         <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
+                            <LinkContainer to="/devilmaycry" style={{ 'background-color': 'red' }}>
+                                <NavDropdown.Item href="#action/3.1">Devil May Cry</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/devilmaycry2">
+                                <NavDropdown.Item href="#action/3.2">Devil May Cry 2</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/devilmaycry3">
+                                <NavDropdown.Item href="#action/3.1">Devil May Cry 3</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/devilmaycry3">
+                                <NavDropdown.Item href="#action/3.2">Devil May Cry 4</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/devilmaycry3">
+                                <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to="/devilmaycry3">
+                                <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
+                            </LinkContainer>
                             <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Fan Art</NavDropdown.Item>
