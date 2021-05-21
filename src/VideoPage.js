@@ -7,15 +7,22 @@ import DMCNavbar from './DMCNavbar.js';
 import DMC3VideoFilter from './DMC3VideoFilter.js';
 import DMC5VideoFilter from './DMC5VideoFilter.js';
 import CharacterFilter from './CharacterFilter.js';
-import Dante from './images/devilmaycry3/dante_dmc3.png';
+import Dante3 from './images/devilmaycry3/dante_dmc3.png';
 import DanteAndVergil from './images/devilmaycry3/dante_and_vergil.jpg';
 import Other from './images/devilmaycry3/other.png';
-import Vergil from './images/devilmaycry3/vergil_dmc3.png';
+import Vergil3 from './images/devilmaycry3/vergil_dmc3.png';
+import Dante5 from './images/devilmaycry5/dante_dmc5.png';
+import Nero5 from './images/devilmaycry5/nero_dmc5.png';
+import V from './images/devilmaycry5/v_dmc5.png';
+import Vergil5 from './images/devilmaycry5/vergil_dmc5.png';
 import VideoThumbnail from './VideoThumbnail.js'
 import parse, { domToReact } from 'html-react-parser';
 import './VideoPage.css';
 
 function VideoPage(props) {
+
+    var initFilters = props.filters
+    var a = '\xa0\xa0\xa0' + "V";
 
     const filterList = {
         dmc3: {
@@ -23,13 +30,13 @@ function VideoPage(props) {
                 {
                     id: 'dante3',
                     name: 'Dante',
-                    image: Dante,
+                    image: Dante3,
                     filterNum: 0
                 },
                 {
                     id: 'vergil3',
                     name: 'Vergil',
-                    image: Vergil,
+                    image: Vergil3,
                     filterNum: 1
                 },
                 {
@@ -45,25 +52,37 @@ function VideoPage(props) {
                     filterNum: 3
                 }
             ],
-            filterCount: 4
         },
-        dmc5: [
-            'nero',
-            'dante',
-            'v',
-            'vergil'
-        ]
+        dmc5: {
+            filters: [
+                {
+                    id: 'nero5',
+                    name: 'Nero',
+                    image: Nero5,
+                    filterNum: 0
+                },
+                {
+                    id: 'dante5',
+                    name: 'Dante',
+                    image: Dante5,
+                    filterNum: 1
+                },
+                {
+                    id: 'v5',
+                    name: a,
+                    image: V,
+                    filterNum: 2
+                },
+                {
+                    id: 'vergil5',
+                    name: 'Vergil',
+                    image: Vergil5,
+                    filterNum: 3
+                }
+            ],
+        }
     }
-
-    switch (props.game) {
-        case 'dmc1':
-            var initFilters = [false, false]
-        case 'dmc2':
-            var initFilters = [false, false, false, false]
-        case 'dmc3':
-            var initFilters = [false, false, false, false]
-            console.log('inside here')
-    }
+    const [filtersClicked, setFilters] = useState(props.filters)
 
     function generateFilters() {
         return (
@@ -121,8 +140,8 @@ function VideoPage(props) {
         }
     }
 
+
     var [newData, setData] = useState(false);
-    const [filtersClicked, setFilters] = useState(initFilters)
     // useEffect(() => {
     //     async function getContent() {
     //         if (newData) {
@@ -151,12 +170,14 @@ function VideoPage(props) {
 
     useEffect(() => {
         async function getContent() {
+            //let's try to do a .map to create the URL search params. There's a .append for this
+            var providedURL = 'http://localhost:8080/videos/all?' + new URLSearchParams({ game: props.game, Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] })
             //this'll work if we can get UseEffect to work on filter selection
             //(for the sake of minimizing renders, maybe add an "apply" button)
             // if (newData.prop) {
             //     return
             // }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }),
+            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: props.game, Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }),
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
@@ -166,7 +187,7 @@ function VideoPage(props) {
                 .then(async (data) => {
                     let clone = JSON.parse(JSON.stringify(data))
                     clone.prop = 2
-                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ game: 'Devil May Cry 3', Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }))
+                    console.log('http://localhost:8080/videos/all?' + new URLSearchParams({ game: props, Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }))
                     setData(clone.data)
                 })
 

@@ -60,7 +60,7 @@ function DMCNavbar() {
                             <LinkContainer to="/devilmaycry3">
                                 <NavDropdown.Item href="#action/3.1">DMC: Devil May Cry</NavDropdown.Item>
                             </LinkContainer>
-                            <LinkContainer to="/devilmaycry3">
+                            <LinkContainer to="/devilmaycry5">
                                 <NavDropdown.Item href="#action/3.2">Devil May Cry 5</NavDropdown.Item>
                             </LinkContainer>
                             <NavDropdown.Item href="#action/3.3">General</NavDropdown.Item>
