@@ -89,7 +89,7 @@ function VideoPage(props) {
                 },
                 {
                     id: 'dv3',
-                    name: 'Duo',
+                    name: 'Dante and Vergil',
                     image: DanteAndVergil,
                     filterNum: 2
                 },
@@ -148,13 +148,10 @@ function VideoPage(props) {
         console.log(initFilters)
         setFilters(initFilters)
         console.log(filtersClicked)
-        //the problem here is that initFilters is reset every time. See if you can put the
-        //switch statement somewhere else
     }
 
     function generateVideos(video_links) {
         console.log(video_links)
-        //<iframe class="videoEntries" style={{ margin: '0 auto', padding: 20, width: 300 }} src={"//www.youtube.com/embed/" + getId(item.video_link)}></iframe>
         return (
             video_links.map((item) => (
                 <Fragment>
@@ -191,42 +188,23 @@ function VideoPage(props) {
 
 
     var [newData, setData] = useState(false);
-    // useEffect(() => {
-    //     async function getContent() {
-    //         if (newData) {
-    //             console.log('repeat')
-    //             //the issue is that this doesn't trigger now
-    //             return
-    //         }
-    //         await fetch('http://localhost:8080/videos/all',
-    //             {
-    //                 method: "GET",
-    //                 headers: {}
-    //             })
-    //             .then(async (response) => response.json())
-    //             .then(async (data) => {
-    //                 let clone = JSON.parse(JSON.stringify(data))
-    //                 clone.prop = 2
-    //                 setData(clone.data)
-    //                 //we need the data to be securely in here. Can't access it outside.
-    //                 //we'll likely need to use a map in useEffect and somehow get that outside
-
-    //             })
-
-    //     }
-    //     getContent();
-    // }, [newData])
 
     useEffect(() => {
         async function getContent() {
             //let's try to do a .map to create the URL search params. There's a .append for this
-            var providedURL = 'http://localhost:8080/videos/all?' + new URLSearchParams({ game: props.game, Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] })
+            let params = new URLSearchParams({ game: props.game })
+            var providedURL = 'http://localhost:8080/videos/all?'
+            filterList[props.game]['filters'].forEach((item) => {
+                console.log(item)
+                params.append(item.name, filtersClicked[item.filterNum])
+                console.log(params.toString())
+            })
             //this'll work if we can get UseEffect to work on filter selection
             //(for the sake of minimizing renders, maybe add an "apply" button)
             // if (newData.prop) {
             //     return
             // }
-            await fetch('http://localhost:8080/videos/all?' + new URLSearchParams({ game: props.game, Dante: filtersClicked[0], Vergil: filtersClicked[1], duo: filtersClicked[2], Other: filtersClicked[3] }),
+            await fetch(providedURL + params,
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
                 {
@@ -257,8 +235,6 @@ function VideoPage(props) {
 
     //next goal for videos: see if you can queue the first 30 results and auto-display when clicked back to the game page
     //Pagination could be good here
-
-    //<DMC3VideoFilter filters={filtersClicked} filterFunction={setFilters}>{filterAdder()}</DMC3VideoFilter>
     return (
         <div>
             <DMC3VideoFilter dantes={filterAdder()} filters={filtersClicked} filterFunction={setFilters}></DMC3VideoFilter>

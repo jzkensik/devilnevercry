@@ -18,6 +18,7 @@ async function returnAllVids(query) {
     // }
     var sqlString = `SELECT * FROM Videos WHERE game = '` + query.game + "'"
     var counter = 0
+    //generate URLSearchParameters dynamically, through .append
     for (item in query) {
         console.log('just got in the for loop')
         console.log(counter)
