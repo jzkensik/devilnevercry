@@ -19,20 +19,25 @@ async function returnAllVids(query) {
     var sqlString = `SELECT * FROM Videos WHERE game = '` + query.game + "'"
     var counter = 0
     for (item in query) {
+        console.log('just got in the for loop')
+        console.log(counter)
         //the first one starts with a WHERE, the rest are all OR based
         if (item == 'game') {
             console.log('here')
+            console.log('counter')
             counter = counter + 1
             continue;
         }
-        if (counter == 1 && query[item] == false) {
+        if (counter == 1 && query[item] == 'false') {
+            console.log('in the second part')
             sqlString = sqlString + ` AND player_character = '` + item + "'"
             counter = counter + 1
             continue;
         }
         console.log(item)
         console.log(query[item])
-        if (query[item] == false) {
+        if (query[item] == 'false') {
+            console.log('in the third part')
             sqlString = sqlString + ` OR player_character = '` + item + "'"
         }
         counter = counter + 1
