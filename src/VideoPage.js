@@ -7,6 +7,10 @@ import DMCNavbar from './DMCNavbar.js';
 import DMC3VideoFilter from './DMC3VideoFilter.js';
 import DMC5VideoFilter from './DMC5VideoFilter.js';
 import CharacterFilter from './CharacterFilter.js';
+import Dante1 from './images/devilmaycry/Dante_DMC1.png'
+import Dante2 from './images/devilmaycry2/DMC2Dante.png';
+import Lucia from './images/devilmaycry2/Lucia.png';
+import Trish2 from './images/devilmaycry2/DMC_Trish.png';
 import Dante3 from './images/devilmaycry3/dante_dmc3.png';
 import DanteAndVergil from './images/devilmaycry3/dante_and_vergil.jpg';
 import Other from './images/devilmaycry3/other.png';
@@ -25,7 +29,51 @@ function VideoPage(props) {
     var a = '\xa0\xa0\xa0' + "V";
 
     const filterList = {
-        dmc3: {
+        'Devil May Cry': {
+            filters: [
+                {
+                    id: 'dante1',
+                    name: 'Dante',
+                    image: Dante1,
+                    filterNum: 0
+                },
+                {
+                    id: 'other1',
+                    name: 'Other',
+                    image: Other,
+                    filterNum: 1
+                }
+            ],
+        },
+        'Devil May Cry 2': {
+            filters: [
+                {
+                    id: 'dante2',
+                    name: 'Dante',
+                    image: Dante2,
+                    filterNum: 0
+                },
+                {
+                    id: 'lucia',
+                    name: 'Lucia',
+                    image: Lucia,
+                    filterNum: 1
+                },
+                {
+                    id: 'trish2',
+                    name: 'Trish',
+                    image: Trish2,
+                    filterNum: 2
+                },
+                {
+                    id: 'other2',
+                    name: 'Other',
+                    image: Other,
+                    filterNum: 3
+                }
+            ],
+        },
+        'Devil May Cry 3': {
             filters: [
                 {
                     id: 'dante3',
@@ -53,7 +101,7 @@ function VideoPage(props) {
                 }
             ],
         },
-        dmc5: {
+        'Devil May Cry 5': {
             filters: [
                 {
                     id: 'nero5',
@@ -85,6 +133,7 @@ function VideoPage(props) {
     const [filtersClicked, setFilters] = useState(props.filters)
 
     function generateFilters() {
+        console.log('creating a filter')
         return (
             (filterList[props.game]['filters']).map((item) => (
                 <Fragment>
