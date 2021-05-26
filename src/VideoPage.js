@@ -4,8 +4,7 @@ import Loadable from 'react-loadable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Canvas from './Canvas.js';
 import DMCNavbar from './DMCNavbar.js';
-import DMC3VideoFilter from './DMC3VideoFilter.js';
-import DMC5VideoFilter from './DMC5VideoFilter.js';
+import VideoFilter from './DMC3VideoFilter.js';
 import CharacterFilter from './CharacterFilter.js';
 import Dante1 from './images/devilmaycry/Dante_DMC1.png'
 import Dante2 from './images/devilmaycry2/DMC2Dante.png';
@@ -25,7 +24,8 @@ import './VideoPage.css';
 
 function VideoPage(props) {
 
-    var initFilters = props.filters
+    var currentFilters = false;
+    //var initFilters = [...props.filters]
     var a = '\xa0\xa0\xa0' + "V";
 
     const filterList = {
@@ -144,8 +144,10 @@ function VideoPage(props) {
     }
 
     function flipFilters(filterNumber) {
+        //console.log(initFilters)
+        let initFilters = [...filtersClicked];
         initFilters[filterNumber] = !initFilters[filterNumber]
-        console.log(initFilters)
+        console.log(filtersClicked)
         setFilters(initFilters)
         console.log(filtersClicked)
     }
@@ -191,6 +193,20 @@ function VideoPage(props) {
 
     useEffect(() => {
         async function getContent() {
+            // console.log('currentFilters')
+            // console.log(currentFilters)
+            // console.log('filtersClicked')
+            // console.log(filtersClicked)
+            // try {
+            //     if (currentFilters == filtersClicked) {
+            //         console.log("if we're here then this thing is now cut off")
+            //         return;
+            //     }
+            // }
+            // catch (exception) {
+            //     console.log("currentFilters doesn't exist")
+            // }
+
             //let's try to do a .map to create the URL search params. There's a .append for this
             let params = new URLSearchParams({ game: props.game })
             var providedURL = 'http://localhost:8080/videos/all?'
@@ -237,7 +253,7 @@ function VideoPage(props) {
     //Pagination could be good here
     return (
         <div>
-            <DMC3VideoFilter dantes={filterAdder()} filters={filtersClicked} filterFunction={setFilters}></DMC3VideoFilter>
+            <VideoFilter dantes={filterAdder()} filters={filtersClicked} filterFunction={setFilters}></VideoFilter>
             {iframeAdder()}
         </div>
     )

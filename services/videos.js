@@ -18,30 +18,72 @@ async function returnAllVids(query) {
     // }
     var sqlString = `SELECT * FROM Videos WHERE game = '` + query.game + "'"
     var counter = 0
-    //generate URLSearchParameters dynamically, through .append
+    //ah shit
+    //so when all are false, it gives all videos, but you have to swap the search when
+    //even one of them is true
+    //as-is you have the 'all' working but you have to figure that out. Probably do a check in the beginning
+    //if all are false: all videos
+    //if one is true: only that video's category
+    //if two are true: both of theirs
+    let checkNext = false
     for (item in query) {
-        console.log('just got in the for loop')
-        console.log(counter)
-        //the first one starts with a WHERE, the rest are all OR based
-        if (item == 'game') {
-            console.log('here')
-            console.log('counter')
-            counter = counter + 1
-            continue;
+        if (query[item] == 'true') {
+            checkNext = true
+            break;
         }
-        if (counter == 1 && query[item] == 'false') {
-            console.log('in the second part')
-            sqlString = sqlString + ` AND player_character = '` + item + "'"
-            counter = counter + 1
-            continue;
+    }
+    if (checkNext) {
+        for (item in query) {
+            console.log('just got in the for loop')
+            console.log(counter)
+            if (item == 'game') {
+                console.log('in the first part')
+                console.log(item)
+                console.log(query[item])
+                console.log(counter)
+                counter = counter + 1
+                continue;
+            }
+            if (counter == 1 && query[item] == 'true') {
+                console.log('in the second part')
+                console.log(item)
+                console.log(query[item])
+                sqlString = sqlString + ` AND player_character = '` + item + "'"
+                counter = counter + 1
+                continue;
+            }
+            if (query[item] == 'true') {
+                console.log('in the third part')
+                console.log(item)
+                console.log(query[item])
+                sqlString = sqlString + ` OR player_character = '` + item + "'"
+                counter = counter + 1
+            }
         }
-        console.log(item)
-        console.log(query[item])
-        if (query[item] == 'false') {
-            console.log('in the third part')
-            sqlString = sqlString + ` OR player_character = '` + item + "'"
-        }
-        counter = counter + 1
+        // for (item in query) {
+        //     console.log('just got in the for loop')
+        //     console.log(counter)
+        //     //the first one starts with a WHERE, the rest are all OR based
+        //     if (item == 'game') {
+        //         console.log('here')
+        //         console.log('counter')
+        //         counter = counter + 1
+        //         continue;
+        //     }
+        //     if (counter == 1 && query[item] == 'false') {
+        //         console.log('in the second part')
+        //         sqlString = sqlString + ` AND player_character = '` + item + "'"
+        //         counter = counter + 1
+        //         continue;
+        //     }
+        //     console.log(item)
+        //     console.log(query[item])
+        //     if (query[item] == 'false') {
+        //         console.log('in the third part')
+        //         sqlString = sqlString + ` OR player_character = '` + item + "'"
+        //     }
+        //     counter = counter + 1
+        // }
     }
     counter = 0
     console.log(sqlString)
