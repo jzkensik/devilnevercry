@@ -15,6 +15,10 @@ function App() {
   //   )
   // }
 
+  //we're making a 'search page'. We take something in and output whatever it could be.
+  //there's a 'search page' for each of them. Check the newgrounds page and compare common expressions
+  //let's start with ability to log in, though. Look up JSON web tokens
+
   return (
     <Router>
       <div>

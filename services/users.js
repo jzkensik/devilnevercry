@@ -2,6 +2,8 @@ const sha256 = require('js-sha256');
 const db = require('./db');
 const helper = require('../helper');
 const config = require('../server/config');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -28,13 +30,25 @@ function getRandomInt(min, max) {
 
 async function createNewUser(fields) {
     const id = getRandomInt(2, 100000)
-    const hashword = sha256(fields.password);
     const prelim = await db.query(`SELECT * FROM Users WHERE user_id = ` + id)
     if (prelim.length != 0) {
         console.log('infinite')
         return createNewUser(fields);
     }
-    const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + hashword + "'" + ', ' + `STR_TO_DATE(` + "'" + fields.dob + "'" + ', ' + `"%m/%d/%Y")` + ', ' + "'" + fields.email + "'" + ')')
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        bcrypt.hash(fields.password, salt, async function (err, hash) {
+            //then store hash in the password
+            const data = await db.query(`INSERT INTO Users(user_id, username, hashed_password, date_of_birth, email) VALUES (` + "'" + id + "'" + ', ' + "'" + fields.username + "'" + ', ' + "'" + hash + "'" + ', ' + `STR_TO_DATE(` + "'" + fields.dob + "'" + ', ' + `"%m/%d/%Y")` + ', ' + "'" + fields.email + "'" + ')')
+            //I mean I *think* this works? idk
+            return {
+                data
+            }
+        })
+    })
+}
+
+async function displayAllUsers(fields) {
+    const data = await db.query(`SELECT * FROM Users`)
     //now fix the password
     return {
         data

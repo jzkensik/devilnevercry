@@ -23,6 +23,10 @@ function CreateUser() {
         var dateOfBirth = document.getElementById('dob-form').value;
         var email = document.getElementById('email-form').value;
         var data = { username: username, password: password, dob: dateOfBirth, email: email }
+        //accesses signup view
+        //POSTs stuff to endpoint on server
+        //NEXT: password hashed via bcrypt, stored in Users table. Use a salt. 
+        //stretch goal: ( have them validate email)
         await fetch('http://localhost:8080/users/new-user',
             {
                 method: "POST",

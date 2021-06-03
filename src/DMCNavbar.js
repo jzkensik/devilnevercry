@@ -9,6 +9,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Image from 'react-bootstrap/Image';
 import dante from './boomerDante.jpg';
+import LoginUser from './LoginUser.js';
 import CreateUser from './CreateUser.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Canvas from './Canvas.js';
@@ -28,8 +29,11 @@ function DMCNavbar() {
     //in DMC4:SE to see a list of creators who have made videos involving her, and the number.
     //Try a Jumbotron
     const [show, setShow] = useState(false)
+    const [showLogin, setShowLogin] = useState(false)
     const handleShow = () => setShow(true)
+    const handleShowLogin = () => setShowLogin(true)
     const handleClose = () => setShow(false)
+    const handleCloseLogin = () => setShowLogin(false)
     console.log('hello here')
 
     return (
@@ -41,7 +45,7 @@ function DMCNavbar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id='main-navbar' className="mr-auto">
-                        <LinkContainer to="/devilmaycry3">
+                        <LinkContainer to="/users">
                             <Nav.Link>Users</Nav.Link>
                         </LinkContainer>
                         <NavDropdown title="I...Need...More...Power..." id="basic-nav-dropdown">
@@ -71,6 +75,7 @@ function DMCNavbar() {
                             <Nav.Link>Upload Video</Nav.Link>
                         </LinkContainer>
                         <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+                        <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -78,6 +83,12 @@ function DMCNavbar() {
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
+            <Modal show={showLogin} onHide={handleCloseLogin}>
+                <Modal.Body>
+                    <Button style={{ width: '5%' }} onClick={handleCloseLogin}></Button>
+                    <LoginUser></LoginUser>
+                </Modal.Body>
+            </Modal>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
                     <Button style={{ width: '5%' }} onClick={handleClose}></Button>
