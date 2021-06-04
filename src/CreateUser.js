@@ -25,8 +25,11 @@ function CreateUser() {
         var data = { username: username, password: password, dob: dateOfBirth, email: email }
         //accesses signup view
         //POSTs stuff to endpoint on server
-        //NEXT: password hashed via bcrypt, stored in Users table. Use a salt. 
+        //password hashed via bcrypt, stored in Users table. Use a salt. 
         //stretch goal: ( have them validate email)
+        //NEXT: If signup, they're immediately logged in
+        //NEXT: If login, we check the keys, hash the password and compare. If they're the same you continue, otherwise you throw a warning
+        //NEXT: we have a couple options, I'm not really sure yet.
         await fetch('http://localhost:8080/users/new-user',
             {
                 method: "POST",
