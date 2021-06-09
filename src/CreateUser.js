@@ -9,6 +9,7 @@ import './VideoPage.css';
 
 function CreateUser() {
 
+    const axios = require('axios')
     async function createUser() {
         if (password != confirmPassword) {
             console.log('passwords do not match')
@@ -30,15 +31,19 @@ function CreateUser() {
         //NEXT: If signup, they're immediately logged in
         //NEXT: If login, we check the keys, hash the password and compare. If they're the same you continue, otherwise you throw a warning
         //NEXT: we have a couple options, I'm not really sure yet.
-        await fetch('http://localhost:8080/users/new-user',
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(async (response) => console.log(response.json()))
+        const options = {
+            url: 'http://localhost:8080/users/new-user',
+            method: 'GET',
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                //body: JSON.stringify(data)
+            }
+        };
+        await axios(options)
+            .then(async (response) => console.log(response))
 
     }
 
