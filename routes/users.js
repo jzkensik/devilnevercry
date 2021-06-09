@@ -12,6 +12,7 @@ router.get('/all-users', async function (req, res, next) {
         next(err);
     }
 })
+var sess;
 
 router.post('/new-user', async function (req, res, next) {
     var content = req.body
@@ -19,8 +20,23 @@ router.post('/new-user', async function (req, res, next) {
     //console.log(users.createNewUser(content))
     try {
         res.send(await users.createNewUser(content));
-        req.session.name = content.username
-        console.log(req.session)
+    } catch (err) {
+        console.error("couldn't post user;", err.message);
+        next(err);
+    }
+    req.session.name = content.username
+    req.session.secret = 'hololive'
+    console.log(req.session)
+    sess = req.session
+})
+
+router.get('/for-coco', async function (req, res, next) {
+    var content = req.body
+    //console.log(users.createNewUser(content))
+    try {
+        // req.session.name = 'kiryu_coco'
+        // console.log(req.session)
+        res.send(sess)
     } catch (err) {
         console.error("couldn't post user;", err.message);
         next(err);

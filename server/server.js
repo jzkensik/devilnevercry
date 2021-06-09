@@ -11,7 +11,13 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 app.use(cookieParser());
-app.use(session({ secret: "Shh, its a secret!" }));
+console.log('here again')
+// app.use(session({
+//     secret: "Shh, its a secret!",
+//     resave: false,
+//     saveUninitialized: true
+// }))
+app.use(session({}))
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
