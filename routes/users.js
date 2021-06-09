@@ -19,10 +19,30 @@ router.post('/new-user', async function (req, res, next) {
     //console.log(users.createNewUser(content))
     try {
         res.send(await users.createNewUser(content));
+        req.session.name = content.username
+        console.log(req.session)
     } catch (err) {
         console.error("couldn't post user;", err.message);
         next(err);
     }
 })
+
+// router.get('/test', function (req, res) {
+//     if (req.session.page_views) {
+//         req.session.page_views++;
+//         res.send("You visited this page " + req.session.page_views + " times");
+//     } else {
+//         req.session.page_views = 1;
+//         res.send("Welcome to this page for the first time!");
+//         console.log('heyooo boys I hope this works you know')
+//         console.log(req.session.page_views)
+//     }
+// });
+
+//we'll probably be using a get request for the signup and the login.
+//we can change parts of the req.session based on the signup and the login
+//there should be a way to set a value to be stored that we then display and check.
+//this value should be: name, potentially. then we check it as we need to
+//of course, there might be ways to change it. We should probably come up with some other secret way
 
 module.exports = router;

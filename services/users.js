@@ -4,6 +4,9 @@ const helper = require('../helper');
 const config = require('../server/config');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const express = require('express');
+var app = express();
+var session = require('express-session')
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
