@@ -33,13 +33,13 @@ function CreateUser() {
         //NEXT: we have a couple options, I'm not really sure yet.
         const options = {
             url: 'http://localhost:8080/users/new-user',
-            method: 'GET',
+            method: 'POST',
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"
             },
             data: {
-                //body: JSON.stringify(data)
+                body: data
             }
         };
         await axios(options)

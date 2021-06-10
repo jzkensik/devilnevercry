@@ -220,6 +220,17 @@ function VideoPage(props) {
             // if (newData.prop) {
             //     return
             // }
+            // const options = {
+            //     url: 'providedURL' + params,
+            //     method: 'GET',
+            //     withCredentials: true,
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     data: {
+            //         //body: JSON.stringify(data)
+            //     }
+            // };
             await fetch(providedURL + params,
                 // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
                 //the URL works, we just need to figure out how to push the info through
