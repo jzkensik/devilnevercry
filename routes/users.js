@@ -41,6 +41,18 @@ router.get('/current-user', async function (req, res, next) {
 
 })
 
+router.post('/test-add-graduation', async function (req, res, next) {
+    try {
+        req.session.graduation = 'too soon'
+        console.log(req.session)
+        res.send(req.session)
+    }
+    catch (err) {
+        console.error("grad test", err.message);
+        next(err);
+    }
+})
+
 // router.get('/for-coco', async function (req, res, next) {
 //     var content = req.body
 //     //console.log(users.createNewUser(content))
