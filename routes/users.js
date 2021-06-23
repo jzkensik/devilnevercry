@@ -1,27 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const db = ('../db');
 const users = require('../services/users');
 const axios = require('axios')
 
-router.get('/all-users', async function (req, res, next) {
-    try {
-        res.json(await users.displayAllUsers(req.query));
-        //this works for the appended query, but not switch statement. Why?
-    } catch (err) {
-        console.error(`Couldn't get users:`, err.message);
-        next(err);
-    }
-})
+// router.get('/all-users', async function (req, res, next) {
+//     try {
+//         res.json(await users.displayAllUsers(req.query));
+//         //this works for the appended query, but not switch statement. Why?
+//     } catch (err) {
+//         console.error(`Couldn't get users:`, err.message);
+//         next(err);
+//     }
+// })
 
 router.post('/new-user', async function (req, res, next) {
     var content = req.body.body
     // console.log(content)
     //console.log(users.createNewUser(content))
-    //console.log(req.body.body)
+    console.log(req.body.body)
+    req.session.name = content.username
     console.log(req.session.name)
     try {
-        req.session.name = content.username
-        console.log(req.session)
         res.send(await users.createNewUser(content)); //maybe try sending the name through here.
     } catch (err) {
         console.error("couldn't post user;", err.message);
@@ -33,27 +33,27 @@ router.get('/current-user', async function (req, res, next) {
     try {
         console.log('inside current user')
         console.log(req.session)
-        res.send(req.session.name)
+        console.log(req.sessionID)
     } catch (err) {
-        console.error("couldn't retrieve user", err.message);
+        console.error("bruh idk lol", err.message);
         next(err);
     }
 
 })
 
-router.get('/for-coco', async function (req, res, next) {
-    var content = req.body
-    //console.log(users.createNewUser(content))
-    try {
-        req.session.name = 'kiryu_coco'
-        console.log(req.session)
-        res.send(req.session)
-        res.end()
-    } catch (err) {
-        console.error("couldn't post user;", err.message);
-        next(err);
-    }
-})
+// router.get('/for-coco', async function (req, res, next) {
+//     var content = req.body
+//     //console.log(users.createNewUser(content))
+//     try {
+//         req.session.name = 'kiryu_coco'
+//         console.log(req.session)
+//         res.send(req.session)
+//         res.end()
+//     } catch (err) {
+//         console.error("couldn't post user;", err.message);
+//         next(err);
+//     }
+// })
 
 // router.get('/test', function (req, res) {
 //     if (req.session.page_views) {
