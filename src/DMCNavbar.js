@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Modal } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import HomePage from './HomePage.js';
@@ -33,8 +33,49 @@ function DMCNavbar() {
     const handleShow = () => setShow(true)
     const handleShowLogin = () => setShowLogin(true)
     const handleClose = () => setShow(false)
-    const handleCloseLogin = () => setShowLogin(false)
+    const handleCloseLogin = async () => {
+        setShowLogin(false)
+        await fetch('http://localhost:8080/users/current-user',
+            // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
+            //the URL works, we just need to figure out how to push the info through
+            {
+                method: "GET"
+            })
+            .then(async (response) => console.log(response))
+    }
+    //const sign_in = (<h1>how about this</h1>)
     console.log('hello here')
+    const what = (() => {
+        console.log('this is so stupid')
+    })();
+    var sign_in = (
+        < div >
+            <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+            <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+        </div >
+        // console.log('variable declaration')
+        // //console.log(req);
+        // if (req.session.name) {
+        //     <h1>signed in as tomSka</h1>
+        //     console.log('variable selected')
+        // }
+        // else {
+        //     < div >
+        //         <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
+        //         <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+        //     </div >
+        //     console.log('navbar set up')
+        // }
+    );
+
+    // window.onload = (event) => {
+    //     sign_in = 
+    // }
+
+    //swap the variables as you go through. use UseEffect
+    useEffect(() => {
+        // console.log(what) //can we do something w this
+    }, [sign_in])
 
     return (
         <div>
@@ -74,8 +115,7 @@ function DMCNavbar() {
                         <LinkContainer to="/upload">
                             <Nav.Link>Upload Video</Nav.Link>
                         </LinkContainer>
-                        <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
-                        <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+                        {sign_in}
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

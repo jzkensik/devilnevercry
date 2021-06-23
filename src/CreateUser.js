@@ -23,7 +23,7 @@ function CreateUser() {
         var confirmPassword = document.getElementById('confirm-password-form').value;
         var dateOfBirth = document.getElementById('dob-form').value;
         var email = document.getElementById('email-form').value;
-        var data = { username: username, password: password, dob: dateOfBirth, email: email }
+        var data = { username: username, password: password, dob: dateOfBirth, email: email, cookie: document.cookie }
         //accesses signup view
         //POSTs stuff to endpoint on server
         //password hashed via bcrypt, stored in Users table. Use a salt. 

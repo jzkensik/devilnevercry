@@ -32,6 +32,8 @@ function getRandomInt(min, max) {
 // }
 
 async function createNewUser(fields) {
+    const store_cookie = await db.query(`INSERT INTO Cookies(cookie_name, username) VALUES ('` + fields.cookie + `', '` + fields.username + `')`)
+    console.log(store_cookie)
     const id = getRandomInt(2, 100000)
     const prelim = await db.query(`SELECT * FROM Users WHERE user_id = ` + id)
     if (prelim.length != 0) {

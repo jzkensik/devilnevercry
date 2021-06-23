@@ -13,26 +13,32 @@ router.get('/all-users', async function (req, res, next) {
     }
 })
 
-router.get('/new-user', async function (req, res, next) {
-    // var content = req.body
+router.post('/new-user', async function (req, res, next) {
+    var content = req.body.body
     // console.log(content)
     //console.log(users.createNewUser(content))
+    //console.log(req.body.body)
     console.log(req.session.name)
     try {
-        if (req.session.name) {
-            req.session.complete = 'graduation'
-        }
-        else {
-            req.session.name = 'kiryu coco'
-        }
-        res.send(req.session)
+        req.session.name = content.username
         console.log(req.session)
-        //res.send(await users.createNewUser(content));
-        res.end()
+        res.send(await users.createNewUser(content)); //maybe try sending the name through here.
     } catch (err) {
         console.error("couldn't post user;", err.message);
         next(err);
     }
+})
+
+router.get('/current-user', async function (req, res, next) {
+    try {
+        console.log('inside current user')
+        console.log(req.session)
+        res.send(req.session.name)
+    } catch (err) {
+        console.error("couldn't retrieve user", err.message);
+        next(err);
+    }
+
 })
 
 router.get('/for-coco', async function (req, res, next) {
@@ -42,6 +48,7 @@ router.get('/for-coco', async function (req, res, next) {
         req.session.name = 'kiryu_coco'
         console.log(req.session)
         res.send(req.session)
+        res.end()
     } catch (err) {
         console.error("couldn't post user;", err.message);
         next(err);
