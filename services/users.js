@@ -1,5 +1,5 @@
 const sha256 = require('js-sha256');
-const db = require('./db');
+const db = require('../db');
 const helper = require('../helper');
 const config = require('../server/config');
 const bcrypt = require('bcrypt');
@@ -32,8 +32,6 @@ function getRandomInt(min, max) {
 // }
 
 async function createNewUser(fields) {
-    const store_cookie = await db.query(`INSERT INTO Cookies(cookie_name, username) VALUES ('` + fields.cookie + `', '` + fields.username + `')`)
-    console.log(store_cookie)
     const id = getRandomInt(2, 100000)
     const prelim = await db.query(`SELECT * FROM Users WHERE user_id = ` + id)
     if (prelim.length != 0) {
@@ -51,6 +49,12 @@ async function createNewUser(fields) {
         })
     })
 }
+
+// async function newCookie(content) {
+//     const store_cookie = await db.query(`INSERT INTO Cookies(cookie_name, username) VALUES ('` + content.cookie + `', '` + content.username + `')`)
+//     console.log(store_cookie)
+//     return store_cookie;
+// }
 
 async function displayAllUsers(fields) {
     const data = await db.query(`SELECT * FROM Users`)

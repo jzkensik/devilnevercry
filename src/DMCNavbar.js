@@ -28,26 +28,56 @@ function DMCNavbar() {
     //Since it's more based around creators than characters, you can filter, e.g, Lady gameplay
     //in DMC4:SE to see a list of creators who have made videos involving her, and the number.
     //Try a Jumbotron
+    const [currentUserName, setCurrentUserName] = useState();
+    const axios = require('axios')
     const [show, setShow] = useState(false)
     const [showLogin, setShowLogin] = useState(false)
     const handleShow = () => setShow(true)
-    const handleShowLogin = () => setShowLogin(true)
-    const handleClose = () => setShow(false)
+    const handleShowLogin = async () => {
+        setShowLogin(true)
+        const options = {
+            url: 'http://localhost:8080/users/test-add-graduation',
+            method: 'POST',
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+        await axios(options)
+            .then(async (response) => {
+                console.log(response)
+                console.log(currentUserName)
+            })
+    }
+    const handleClose = async () => {
+        setShow(false)
+        const options = {
+            url: 'http://localhost:8080/users/current-user',
+            method: 'GET',
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+        await axios(options)
+            .then(async (response) => {
+                console.log(response)
+            })
+    }
     const handleCloseLogin = async () => {
         setShowLogin(false)
-        await fetch('http://localhost:8080/users/current-user',
-            // s = new URLSearchParams({ foo: 'bar' }); s.append('foo', 'baz'); s.toString()
-            //the URL works, we just need to figure out how to push the info through
-            {
-                method: "GET"
-            })
-            .then(async (response) => console.log(response))
+        // const options = {
+        //     url: 'http://localhost:8080/users/current-user',
+        //     method: 'GET',
+        //     withCredentials: true,
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        // };
+        // await axios(options)
+        //     .then(async (response) => console.log(response))
+        console.log(currentUserName)
     }
-    //const sign_in = (<h1>how about this</h1>)
-    console.log('hello here')
-    const what = (() => {
-        console.log('this is so stupid')
-    })();
     var sign_in = (
         < div >
             <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
@@ -74,7 +104,7 @@ function DMCNavbar() {
 
     //swap the variables as you go through. use UseEffect
     useEffect(() => {
-        // console.log(what) //can we do something w this
+
     }, [sign_in])
 
     return (

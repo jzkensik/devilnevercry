@@ -44,7 +44,6 @@ function CreateUser() {
         };
         await axios(options)
             .then(async (response) => console.log(response))
-
     }
 
     return (
