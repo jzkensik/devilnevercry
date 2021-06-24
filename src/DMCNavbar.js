@@ -45,8 +45,9 @@ function DMCNavbar() {
         };
         await axios(options)
             .then(async (response) => {
+                console.log('response below')
                 console.log(response)
-                console.log(currentUserName)
+                setCurrentUserName(response.data.name)
             })
     }
     const handleClose = async () => {
@@ -82,6 +83,7 @@ function DMCNavbar() {
         < div >
             <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+            <Nav.Link>{currentUserName}</Nav.Link>
         </div >
         // console.log('variable declaration')
         // //console.log(req);
@@ -105,7 +107,7 @@ function DMCNavbar() {
     //swap the variables as you go through. use UseEffect
     useEffect(() => {
 
-    }, [sign_in])
+    }, [currentUserName])
 
     return (
         <div>
