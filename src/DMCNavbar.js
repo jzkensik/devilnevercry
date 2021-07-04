@@ -80,7 +80,7 @@ function DMCNavbar() {
         console.log(currentUserName)
     }
     var sign_in = (
-        < div >
+        < div style={{ display: 'flex', justifyContent: 'column' }}>
             <Nav.Link onClick={handleShow}>Sign Up</Nav.Link>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
             <Nav.Link>{currentUserName}</Nav.Link>
