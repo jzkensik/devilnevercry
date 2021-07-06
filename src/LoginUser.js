@@ -10,28 +10,19 @@ import './VideoPage.css';
 function LoginUser() {
 
     async function loginUser() {
-        // if (password != confirmPassword) {
-        //     console.log('passwords do not match')
-        //     //try to make a message that says "passwords do not match" that occurs on this
-        //     //also when passwords are invalid(e.g less than 8 characters)
-        //     //also the characters are just the dots
-        //     return
-        // }
-        // var username = document.getElementById('username-form').value;
-        // var password = document.getElementById('password-form').value;
-        // var confirmPassword = document.getElementById('confirm-password-form').value;
-        // var dateOfBirth = document.getElementById('dob-form').value;
-        // var email = document.getElementById('email-form').value;
-        // var data = { username: username, password: password, dob: dateOfBirth, email: email }
-        // await fetch('http://localhost:8080/users/new-user',
-        //     {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(data)
-        //     })
-        //     .then(async (response) => console.log(response.json()))
+
+        var username = document.getElementById('username-form').value;
+        var password = document.getElementById('password-form').value;
+        var data = { username: username, password: password }
+        await fetch('http://localhost:8080/users/current-user',
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(async (response) => console.log(response.json()))
         console.log('logged in')
 
     }
