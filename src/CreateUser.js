@@ -7,7 +7,7 @@ import DMCNavbar from './DMCNavbar.js';
 import parse, { domToReact } from 'html-react-parser';
 import './VideoPage.css';
 
-function CreateUser() {
+function CreateUser(props) {
 
     const axios = require('axios')
     async function createUser() {
@@ -42,8 +42,10 @@ function CreateUser() {
                 body: data
             }
         };
+        console.log(props.onSignin)
         await axios(options)
             .then(async (response) => console.log(response))
+
     }
 
     return (
@@ -54,7 +56,7 @@ function CreateUser() {
                     <Form.Group>
                         <Form.Control id='username-form' type="text" placeholder="Username" />
                         <Form.Text>
-                            Pick something descriptive yet succint. Ask yourself, would Dante get bored reading it?
+                            Pick something descriptive yet succint
                     </Form.Text>
                     </Form.Group>
                     <Form.Group>

@@ -99,11 +99,52 @@ function DMCNavbar() {
         //     console.log('navbar set up')
         // }
     );
+    function createUserAndClose() {
+        createUser()
+        handleClose()
+    }
+    async function createUser() {
+        if (password != confirmPassword) {
+            console.log('passwords do not match')
+            //try to make a message that says "passwords do not match" that occurs on this
+            //also when passwords are invalid(e.g less than 8 characters)
+            //also the characters are just the dots
+            return
+        }
+        var username = document.getElementById('username-form').value;
+        var password = document.getElementById('password-form').value;
+        var confirmPassword = document.getElementById('confirm-password-form').value;
+        var dateOfBirth = document.getElementById('dob-form').value;
+        var email = document.getElementById('email-form').value;
+        var data = { username: username, password: password, dob: dateOfBirth, email: email, cookie: document.cookie }
+        //accesses signup view
+        //POSTs stuff to endpoint on server
+        //password hashed via bcrypt, stored in Users table. Use a salt. 
+        //stretch goal: ( have them validate email)
+        //NEXT: If signup, they're immediately logged in
+        //NEXT: If login, we check the keys, hash the password and compare. If they're the same you continue, otherwise you throw a warning
+        //NEXT: we have a couple options, I'm not really sure yet.
+        const options = {
+            url: 'http://localhost:8080/users/new-user',
+            method: 'POST',
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                body: data
+            }
+        };
+        await axios(options)
+            .then(async (response) => console.log(response))
+
+    }
 
     // window.onload = (event) => {
     //     sign_in = 
     // }
 
+    //sounds like we should only use children to display; so keep this in navbar
     //swap the variables as you go through. use UseEffect
     useEffect(() => {
 
@@ -164,7 +205,41 @@ function DMCNavbar() {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
                     <Button style={{ width: '5%' }} onClick={handleClose}></Button>
-                    <CreateUser></CreateUser>
+                    <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#42d7f5' }}>
+                        <div style={{ marginTop: 50, marginBottom: 50, padding: 50, width: '70%', backgroundColor: '#0047ab' }}>
+                            <div><h1>sign-up here</h1></div>
+                            <Form>
+                                <Form.Group>
+                                    <Form.Control id='username-form' type="text" placeholder="Username" />
+                                    <Form.Text>
+                                        Pick something descriptive yet succint
+                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Control id='password-form' type="text" placeholder="Password" />
+                                    <Form.Text>
+                                        Between 8 and 32 characters
+                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Control id='confirm-password-form' type="text" placeholder="Confirm Password" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Control id='dob-form' type="text" placeholder="mm/dd/yyyy" />
+                                    <Form.Text>
+                                        Date of Birth
+                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Control id='email-form' type="text" placeholder="Email Address" />
+                                    <Form.Text>
+                                        Email
+                    </Form.Text>
+                                </Form.Group>
+                            </Form>
+                            <Button onClick={createUserAndClose}><h1>Create User</h1></Button>
+                        </div>
+                    </div>
                 </Modal.Body>
             </Modal>
         </div>
