@@ -53,7 +53,7 @@ function DMCNavbar() {
     const handleClose = async () => {
         setShow(false)
         const options = {
-            url: 'http://localhost:8080/users/current-user',
+            url: 'http://localhost:8080/users/test-add-graduation',
             method: 'GET',
             withCredentials: true,
             headers: {
@@ -62,7 +62,9 @@ function DMCNavbar() {
         };
         await axios(options)
             .then(async (response) => {
+                console.log('below is the response')
                 console.log(response)
+                setCurrentUserName(response.data.name)
             })
     }
     const handleCloseLogin = async () => {
@@ -101,7 +103,8 @@ function DMCNavbar() {
     );
     function createUserAndClose() {
         createUser()
-        handleClose()
+        setTimeout(handleClose, 1000)
+        //handleClose()
     }
     async function createUser() {
         if (password != confirmPassword) {

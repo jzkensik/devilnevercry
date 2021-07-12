@@ -50,6 +50,30 @@ async function createNewUser(fields) {
     })
 }
 
+async function attemptLogin(fields) {
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        bcrypt.hash(fields.password, salt, async function (err, hash) {
+            //then store hash in the password
+            console.log('attempting login')
+            const data = await db.query(`SELECT hashed_password FROM Users WHERE username = '` + fields.username + `'`) //this is where we do a SELECT and get the comparisons
+            //I mean I *think* this works? idk
+            console.log(`SELECT hashed_password FROM Users WHERE username = '` + fields.username + `'`)
+            console.log(data[0].hashed_password)
+            bcrypt.compare(fields.password, hash, function (err, result) {
+                if (result) {
+                    console.log('it matches!!!!! YES')
+                }
+                else {
+                    console.log('invalid')
+                }
+            });
+            return {
+                data
+            }
+        })
+    })
+}
+
 // async function newCookie(content) {
 //     const store_cookie = await db.query(`INSERT INTO Cookies(cookie_name, username) VALUES ('` + content.cookie + `', '` + content.username + `')`)
 //     console.log(store_cookie)
@@ -65,5 +89,6 @@ async function displayAllUsers(fields) {
 }
 
 module.exports = {
-    createNewUser
+    createNewUser,
+    attemptLogin
 }

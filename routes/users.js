@@ -20,6 +20,7 @@ router.post('/new-user', async function (req, res, next) {
     //console.log(users.createNewUser(content))
     console.log(req.body.body)
     req.session.name = content.username
+    console.log('below is what is there')
     console.log(req.session.name)
     try {
         res.send(await users.createNewUser(content)); //maybe try sending the name through here.
@@ -29,16 +30,31 @@ router.post('/new-user', async function (req, res, next) {
     }
 })
 
-router.get('/current-user', async function (req, res, next) {
+router.post('/current-user', async function (req, res, next) {
+    var content = req.body
+    console.log(content)
     try {
         console.log('inside current user')
-        console.log(req.session)
-        console.log(req.sessionID)
+
+        res.send(await users.attemptLogin(content))
+        //then we do various things based on the response.
+        //1. we set the session name; they're logged in
+        //2. we setShow(false)do something saying "incorrect password"
     } catch (err) {
         console.error("bruh idk lol", err.message);
         next(err);
     }
 
+})
+
+router.get('/test-add-graduation', async function (req, res, next) {
+    try {
+        res.send(req.session)
+    }
+    catch (err) {
+        console.error("grad test", err.message);
+        next(err);
+    }
 })
 
 router.post('/test-add-graduation', async function (req, res, next) {
